@@ -1,0 +1,3421 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SData</name>
+    </assembly>
+    <members>
+        <member name="T:SData.i_PMS">
+            <summary>
+            Класс для работы с данными по связям 3-го порядка между элементами
+            </summary>
+        </member>
+        <member name="M:SData.i_PMS.#ctor(System.Int32,SData.c_PMS)">
+            <summary>
+            Конструктор класса для работы с данными по связям 3-го порядка между элементами
+            </summary>
+            <param name="id_pms">Идентификатор</param>
+            <param name="PMS">Структура</param>
+        </member>
+        <member name="P:SData.i_PMS.id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:SData.i_PMS.type">
+            <summary>
+            Тип
+            </summary>
+        </member>
+        <member name="P:SData.i_PMS.value">
+            <summary>
+            Значение
+            </summary>
+        </member>
+        <member name="P:SData.i_PMS.wwpms">
+            <summary>
+            Связь
+            </summary>
+        </member>
+        <member name="T:SData.m_TabMng">
+            <summary>
+            Класс для управления данными о таблицах в базе
+            </summary>
+        </member>
+        <member name="F:SData.m_TabMng.urgent_level">
+            <summary>
+            Уровень важности для сообщений
+            </summary>
+        </member>
+        <member name="M:SData.m_TabMng.#ctor">
+            <summary>
+            Инициализация класса управления
+            </summary>
+        </member>
+        <member name="M:SData.m_TabMng.SetMessageUrgentLevel(System.Int32)">
+            <summary>
+            Установка уровня важности сообщений (По умолчанию 0)
+            </summary>
+            <param name="level">Уровень важности сообщений</param>
+        </member>
+        <member name="M:SData.m_TabMng.Message(System.String,System.Int32)">
+            <summary>
+            Вывести сообщение диагностики.
+            100=Все сообщения; 
+            90-99=Про инициализацию данных;
+            80-89=Про исполнение методов (81=Начало метода; 80=Конец метода);
+            50-Ключевые этапы;
+            10-Ошибки;
+            0-Без сообщений.
+            </summary>
+            <param name="message_text">Сообщение</param>
+            <param name="message_urgent_level">Уровень важности сообщения</param>
+        </member>
+        <member name="M:SData.m_TabMng.loadForFromSPB(System.String)">
+            <summary>
+            Загружаем массивы таблиц из СПБ базы
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+        </member>
+        <member name="M:SData.m_TabMng.saveForToSPB(System.String)">
+            <summary>
+            Сохраняем массивы таблиц в СПБ файл
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+        </member>
+        <member name="E:SData.m_TabMng.eWhantToSay">
+            <summary>
+            Событие возникающее в момент необходимости вывести сообщение
+            </summary>
+        </member>
+        <member name="T:SData.m_TabMng.eWhantToSayDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости вывести сообщение
+            </summary>
+            <param name="message">Сообщение</param>
+        </member>
+        <member name="T:SData.DefineConstants">
+            <summary>
+            Инициализация констант
+            </summary>
+        </member>
+        <member name="F:SData.DefineConstants.SEGM_BASE_NAME_SIZE">
+            <summary>
+            Размер имени базы в заголовке
+            </summary>
+        </member>
+        <member name="F:SData.DefineConstants.DATE_TEXT_SIZE">
+            <summary>
+            Размер строки с датой
+            </summary>
+        </member>
+        <member name="F:SData.DefineConstants.SEGM_BASE_FILE_VERSION">
+            <summary>
+            Номер версии файла базы
+            </summary>
+        </member>
+        <member name="T:SData.TRazdelTitle">
+            <summary>
+            Заголовок раздела
+            </summary>
+        </member>
+        <member name="T:SData.Utilities.SerrializedStruct`1">
+            <summary>
+            Сериализатор данных
+            </summary>
+            <typeparam name="T">Тип объекта с данными</typeparam>
+        </member>
+        <member name="M:SData.Utilities.SerrializedStruct`1.TypeSize">
+            <summary>
+            Размер типа данных
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SData.Utilities.SerrializedStruct`1.ToArray">
+            <summary>
+            Сериализация в массив байтов
+            </summary>
+            <returns>Массив байтов</returns>
+        </member>
+        <member name="M:SData.Utilities.SerrializedStruct`1.FromArray(System.Byte[])">
+            <summary>
+            Десериализация из массива данных
+            </summary>
+            <param name="array">Массив</param>
+            <returns>Объект</returns>
+        </member>
+        <member name="F:SData.TRazdelTitle.sName">
+            <summary>
+            Строка с наименованием раздела
+            </summary>
+        </member>
+        <member name="F:SData.TRazdelTitle.Tip">
+            <summary>
+            Тип раздела
+            </summary>
+        </member>
+        <member name="F:SData.TRazdelTitle.ElementSize">
+            <summary>
+            Размер элементов раздела
+            </summary>
+        </member>
+        <member name="F:SData.TRazdelTitle.Count">
+            <summary>
+            Количество элементов в разделе
+            </summary>
+        </member>
+        <member name="F:SData.TRazdelTitle.iFirstIndexSegment">
+            <summary>
+            Номер первого сегмента списка индексных сегментов
+            </summary>
+        </member>
+        <member name="F:SData.TRazdelTitle.iWritePos">
+            <summary>
+            Позиция последней записи, относительно начала раздела
+            </summary>
+        </member>
+        <member name="T:SData.TSegmBaseTitle">
+            <summary>
+            Заголовок базы
+            </summary>
+        </member>
+        <member name="F:SData.TSegmBaseTitle.sName">
+            <summary>
+            Строка с наименованием базы
+            </summary>
+        </member>
+        <member name="F:SData.TSegmBaseTitle.Version">
+            <summary>
+            Номер версии базы
+            </summary>
+        </member>
+        <member name="F:SData.TSegmBaseTitle.ModifyDate">
+            <summary>
+            Строка с датой модификации базы
+            </summary>
+        </member>
+        <member name="F:SData.TSegmBaseTitle.RazdelCount">
+            <summary>
+            Количество разделов
+            </summary>
+        </member>
+        <member name="T:SData.SDataFileWriter">
+            <summary>
+            Класс для записи данных в файл
+            </summary>
+        </member>
+        <member name="M:SData.SDataFileWriter.#ctor(System.String)">
+            <summary>
+            Конструктор класса для записи данных в файл
+            </summary>
+            <param name="filename">Имя файла</param>
+        </member>
+        <member name="T:SData.c_Formula">
+            <summary>
+            Класс для работы с данными по формулам
+            </summary>
+        </member>
+        <member name="M:SData.c_Formula.#ctor(System.String)">
+            <summary>
+            Инициализация класса для работы с данными по формулам
+            </summary>
+            <param name="formula">Формула</param>
+        </member>
+        <member name="P:SData.c_Formula.formula">
+            <summary>
+            Формула
+            </summary>
+        </member>
+        <member name="T:SData.c_Kontur">
+            <summary>
+            Класс для хранения данных по логическим параметрам у объектов (контура)
+            </summary>
+        </member>
+        <member name="M:SData.c_Kontur.#ctor(System.Int32)">
+            <summary>
+            Инициализация класса для хранения данных по логическим параметрам у объектов (контура).
+            Группы контуров хранятся отдельно, поэтому необходимо указывать идентификатор группы
+            </summary>
+            <param name="grkon_id">Идентификатор группы контуров</param>
+        </member>
+        <member name="P:SData.c_Kontur.id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.name">
+            <summary>
+            Имя контура
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.metka">
+            <summary>
+            Метка контура
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.grkon_id">
+            <summary>
+            Получить идентификатор группы к которой принадлежит данный контур
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.opkon_n_par">
+            <summary>
+            Номер параметра, фигурирующий в описании контура
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.opkon_val_from">
+            <summary>
+            Нижняя граница значения, фигурирующее в описании контура
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.opkon_val_to">
+            <summary>
+            Верхняя граница значения, фигурирующее в описании контура
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.wwkon">
+            <summary>
+            Ссылка на другой контур
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.value_kontur">
+            <summary>
+            Значение
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.value_savkon">
+            <summary>
+            Значение
+            </summary>
+        </member>
+        <member name="P:SData.c_Kontur.value_svkntr">
+            <summary>
+            Значение
+            </summary>
+        </member>
+        <member name="T:SData.c_MS">
+            <summary>
+            Класс описывающий связи 3-го порядка
+            </summary>
+        </member>
+        <member name="M:SData.c_MS.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Конструктор для объекта описывающий связи 3-го порядка
+            </summary>
+            <param name="id_from">Идентификатор элемента начала связи</param>
+            <param name="id_to">Идентификатор элемента конца связи</param>
+        </member>
+        <member name="P:SData.c_MS.id_from">
+            <summary>
+            Идентификатор элемента начала связи
+            </summary>
+        </member>
+        <member name="P:SData.c_MS.id_to">
+            <summary>
+            Идентификатор элемента конца связи
+            </summary>
+        </member>
+        <member name="T:SData.c_Object_common">
+            <summary>
+            Объект СПМ (общие свойства)
+            </summary>
+        </member>
+        <member name="M:SData.c_Object_common.#ctor(System.Int32,System.String)">
+            <summary>
+            Инициализация класса с общими свойствами
+            </summary>
+            <param name="special_name">Код объекта</param>
+            <param name="analog_id">Идентификатор, который будет присвоен в массиве</param>
+        </member>
+        <member name="P:SData.c_Object_common.spec">
+            <summary>
+            Код объекта (ограничено 64-мя символами)
+            </summary>
+        </member>
+        <member name="P:SData.c_Object_common.id">
+            <summary>
+            Идентификатор объекта аналога
+            </summary>
+        </member>
+        <member name="P:SData.c_Object_common.id_of_first_examplar">
+            <summary>
+            Идентификатор первого экземпляра
+            </summary>
+        </member>
+        <member name="P:SData.c_Object_common.kolAN">
+            <summary>
+            kolAN (Количество аналогов по параметру)
+            </summary>
+        </member>
+        <member name="P:SData.c_Object_common.nomstm">
+            <summary>
+            Номер структуры для элемента
+            </summary>
+        </member>
+        <member name="T:SData.c_Parameter_identification">
+            <summary>
+            Структура для хранения общей информации параметра
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_identification.name">
+            <summary>
+            Имя параметра
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_identification.type">
+            <summary>
+            Тип параметра
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_identification.comment">
+            <summary>
+            Комментарий для параметра
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_identification.control">
+            <summary>
+            Признак контролируемости
+            </summary>
+        </member>
+        <member name="M:SData.c_Parameter_identification.#ctor(System.String)">
+            <summary>
+            Конструктор для структуры хранения общей информации параметра
+            </summary>
+            <param name="name">Имя параметра</param>
+        </member>
+        <member name="T:SData.c_Parameter_value">
+            <summary>
+            Структура для хранения частной информации параметра
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.id_par_iden">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.type">
+            <summary>
+            Тип
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.id_wwpar">
+            <summary>
+            Идентификатор параметра между которым установлена связь
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.value_f">
+            <summary>
+            Значение параметра (вещественное)
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.value_f_sav">
+            <summary>
+            Значение параметра по умолчанию (вещественное)
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.value_t">
+            <summary>
+            Значение параметра (текстовое)
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.value_t_sav">
+            <summary>
+            Значение параметра по умолчанию (текстовое)
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.added">
+            <summary>
+            Отметка о том что параметр был добавлен
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.modified">
+            <summary>
+            Отметка о том что параметр был изменен
+            </summary>
+        </member>
+        <member name="F:SData.c_Parameter_value.deleted">
+            <summary>
+            Отметка о том что параметр был удален
+            </summary>
+        </member>
+        <member name="M:SData.c_Parameter_value.#ctor(System.Int32)">
+            <summary>
+            Конструктор для структуры хранения частной информации параметра
+            </summary>
+            <param name="id_par_iden">Идентификатор</param>
+        </member>
+        <member name="T:SData.c_TreeStructObject">
+            <summary>
+            Класс для описания структуры определяющий элемент в дереве
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.sled">
+            <summary>
+            Следующий элемент по глубине (первый ребенок)
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.pred">
+            <summary>
+            Родитель
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.spsled">
+            <summary>
+            Следующий брат
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.sppred">
+            <summary>
+            Предыдущий брат
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.name">
+            <summary>
+            Наименование
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.metka">
+            <summary>
+            Метка
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.type">
+            <summary>
+            Тип
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.telo">
+            <summary>
+            Признак топологии
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.nran">
+            <summary>
+            Номер элемента-аналога
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.resh">
+            <summary>
+            Номер в решении
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.added">
+            <summary>
+            Признак о том что элемент был добавлен
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.modified">
+            <summary>
+            Признак о том что элемент был изменен
+            </summary>
+        </member>
+        <member name="F:SData.c_TreeStructObject.deleted">
+            <summary>
+            Признак о том что элемент был удален
+            </summary>
+        </member>
+        <member name="M:SData.c_TreeStructObject.#ctor(System.Int32,System.Int32,System.String)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="analog_identificator">Идентификатор элемента-аналога</param>
+            <param name="parent_identificator">Идентификатор родителя</param>
+            <param name="name">Наименование</param>
+        </member>
+        <member name="T:SData.i_Element">
+            <summary>
+            Класс для работы с атрибутами элемента
+            </summary>
+        </member>
+        <member name="M:SData.i_Element.#ctor(System.Int32,SData.c_TreeStructObject,SData.c_Object_common,System.Collections.Generic.List{System.Int32},SData.SParDictionary{System.String,System.Int32},System.Collections.Generic.Dictionary{System.String,System.Int32},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Конструктор класса для работы с атрибутами элемента
+            </summary>
+            <param name="id">Идентификатор</param>
+            <param name="tree_obj">Объект определяющий элемент в дереве</param>
+            <param name="comm_obj">Объект определяющий общие свойства</param>
+            <param name="AchildID">Список идентификаторов детей</param>
+            <param name="AparameterID">Словарь идентификаторов параметров</param>
+            <param name="Aformula">Словарь формул</param>
+            <param name="Atsep">Список идентификаторов для цепочки</param>
+        </member>
+        <member name="M:SData.i_Element.SetActions(System.Boolean)">
+            <summary>
+            Установка всех статусов по параметру у элемента
+            </summary>
+            <param name="done">Значение статуса</param>
+        </member>
+        <member name="M:SData.i_Element.GetSData">
+            <summary>
+            Возвращает базу текущего элемента
+            </summary>
+            <returns>Текущая база</returns>
+        </member>
+        <member name="M:SData.i_Element.GetAllExemplarsIDs">
+            <summary>
+            Возвращает список экземпляров объекта
+            </summary>
+            <returns>Список экземпляров объекта</returns>
+        </member>
+        <member name="M:SData.i_Element.addPar(System.String,System.String,System.Int32,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Метод для добавления параметра к элементу
+            </summary>
+            <param name="p_name">Имя параметра</param>
+            <param name="p_value">Значение параметра</param>
+            <param name="p_type">Тип параметра</param>
+            <param name="p_comment">Комментарий параметра</param>
+            <param name="p_wwpar">Ссылка на другое значение</param>
+            <param name="p_control">Признак контроля параметра</param>
+            <returns>Глобальный идентификатор вновь добавленного параметра</returns>
+        </member>
+        <member name="M:SData.i_Element.addPar(System.String,System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Метод для добавления параметра к элементу
+            </summary>
+            <param name="p_name">Имя параметра</param>
+            <param name="p_value">Значение параметра</param>
+            <param name="p_type">Тип параметра</param>
+            <param name="p_comment">Комментарий параметра</param>
+            <param name="p_wwpar">Ссылка на другое значение</param>
+            <param name="p_control">Признак контроля параметра</param>
+            <param name="sameDefault">Устанавливать значение, как значение по умолчанию</param>
+            <returns>Глобальный идентификатор вновь добавленного параметра</returns>
+        </member>
+        <member name="M:SData.i_Element.delPar(System.String,System.Boolean)">
+            <summary>
+            Метод для удаления параметра
+            </summary>
+            <param name="p_name">Имя параметра</param>
+            <param name="force_link">Удалить, даже если на этот параметр ссылаются другие параметры</param>
+            <returns>Номер параметра, на который ссылаются, 0 - удаление прошло успешно или [отрицательное] - значит некая ошибка</returns>
+        </member>
+        <member name="M:SData.i_Element.addFor(System.String)">
+            <summary>
+            Метод для добавления формул
+            </summary>
+            <param name="formula">Формула</param>
+        </member>
+        <member name="M:SData.i_Element.delFor(System.Int32)">
+            <summary>
+            Метод для удаления формулы
+            </summary>
+            <param name="formula_id">Идентификатор формулы (глобальный)</param>
+        </member>
+        <member name="M:SData.i_Element.addKontur(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Метод для добавления контура
+            </summary>
+            <param name="metka">Метка контура</param>
+            <param name="name">Имя контура</param>
+            <param name="group_name">Имя группы</param>
+            <param name="value_kontur">Значение контура</param>
+            <param name="value_savkon">Значение контура по умолчанию</param>
+            <param name="value_svkntr">Значение контура по умолчанию умолчанию</param>
+        </member>
+        <member name="M:SData.i_Element.addMS(System.Int32,System.Int32)">
+            <summary>
+            Метод для добавления связи
+            </summary>
+            <param name="id_from">Идентификаор первого элемента</param>
+            <param name="id_to">Идентификатор второго элемента</param>  
+            <returns>Идентификатор связи</returns>
+        </member>
+        <member name="P:SData.i_Element.id">
+            <summary>
+            Идентификатор элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.id_first_exemplar">
+            <summary>
+            Идентификатор первого экземпляра
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.kolAN">
+            <summary>
+            kolAN (Количество аналогов по параметру)
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.id_analog">
+            <summary>
+            Идентификатор элемента аналога
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.AchildID">
+            <summary>
+            Список входящих элементов
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.AparameterID">
+            <summary>
+            Словарь с именами параметров и их идентификторами
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.Aformula">
+            <summary>
+            Список формул у элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.Atsep">
+            <summary>
+            Список элементов цепочки (Только чтение)
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.sled">
+            <summary>
+            Идентификатор следующего элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.pred">
+            <summary>
+            Идентификатор предыдущего элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.sppred">
+            <summary>
+            Идентификатор предыдущего брата
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.spsled">
+            <summary>
+            Идентификатор следующего брата
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.resh">
+            <summary>
+            Номер элемента в решении
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.nomstm">
+            <summary>
+            Номер структуры применяемой к элементу
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.name">
+            <summary>
+            Имя элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.spec">
+            <summary>
+            Код элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.type">
+            <summary>
+            Тип элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.metka">
+            <summary>
+            Метка элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.telo">
+            <summary>
+            Топологический признак элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.deleted">
+            <summary>
+            Статус по удалению элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.modified">
+            <summary>
+            Статус по изменению элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_Element.added">
+            <summary>
+            Статус по добавлению элемента
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eWantToGetSData">
+            <summary>
+            Событие по которому необходимо получить объект с данными
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eWantToGetAllExemplarsIDs">
+            <summary>
+            Событие для получения полного списка идентификаторов экземпляра
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eWantToChangeSpec">
+            <summary>
+            Событие возникающее в момент необходимости поменять код элемента
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eWantToChangeNomSTM">
+            <summary>
+            Событие возникающее в момент необходимости поменять номер структурной модели
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eAdding_Par">
+            <summary>
+            Событие возникающее в момент необходимости добавления параметра
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eDeleting_Par">
+            <summary>
+            Событие возникающее в момент необходимости удаления параметра
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eAdding_For">
+            <summary>
+            Событие возникающее в момент необходимости добавления формулы
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eDeleting_For">
+            <summary>
+            Событие возникающее в момент необходимости добавления формулы
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eAdding_Kontur">
+            <summary>
+            Событие возникающее в момент необходимости добавления контура к элементу
+            </summary>
+        </member>
+        <member name="E:SData.i_Element.eAdding_MS">
+            <summary>
+            Событие возникающее в момент необходимости добавления связи к элементу
+            </summary>
+        </member>
+        <member name="T:SData.i_Element.eWhantToGetSDataDelegate">
+            <summary>
+            Делегат для события по которому необходимо получить объект с данными
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SData.i_Element.eWantToGetAllExemplarsIDsDelegate">
+            <summary>
+            Делегат для события получения полного списка идентификаторов экземпляра
+            </summary>
+            <param name="analog_elem_id">Идентификатор аналога</param>
+            <returns>Список идентификаторов</returns>
+        </member>
+        <member name="T:SData.i_Element.eWantToChangeSpecDelegate">
+            <summary>
+            Делегат для события возникающего в момент необходимости поменять код элемента
+            </summary>
+            <param name="exemplar_elem_id">Идентификатор экземпляра элемента</param>
+            <param name="new_spec">Новый код (spec) элемента</param>
+            <returns>Данные общей части для элемента</returns>
+        </member>
+        <member name="T:SData.i_Element.eWantToChangeNomSTMDelegate">
+            <summary>
+            Делегат для события возникающего в момент необходимости поменять номер структурной модели
+            </summary>
+            <param name="analog_elem_id">Идентификатор аналога</param>
+            <param name="nomstm">Номер структурной модели</param>
+        </member>
+        <member name="T:SData.i_Element.eAdding_ParDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости добавления параметра
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="p_name">Имя параметра</param>
+            <param name="p_value">Значение параметра</param>
+            <param name="p_type">Тип параметра</param>
+            <param name="p_comment">Комментарий к параметру</param>
+            <param name="p_wwpar">Ссылка на иное значение</param>
+            <param name="p_control">Признак контроля параметра</param>
+            <param name="sameDefault">Устанавливать такое же значение, значением по умолчанию?</param>
+            <returns>Идентификатор вновь создаваемого параметра</returns>
+        </member>
+        <member name="T:SData.i_Element.eDeleting_ParDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости удаления параметра
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор экземпляра элемента</param>
+            <param name="par_id">Идентефикатор значения параметра</param>
+            <param name="force_link">Удалить, даже если на этот параметр ссылаются другие параметры</param>
+            <returns>Номер параметра, на который ссылаются, 0 - удаление прошло успешно или -1 - значит нет такого параметра</returns>
+        </member>
+        <member name="T:SData.i_Element.eAdding_ForDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости добавления формулы
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="formula">Формула</param>
+            <returns></returns>
+        </member>
+        <member name="T:SData.i_Element.eDeleting_ForDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости удаления формулы
+            </summary>
+            <param name="formula_id">Идентификатор формулы</param>
+            <returns></returns>
+        </member>
+        <member name="T:SData.i_Element.eAdding_KonturDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости добавления контура к элементу
+            </summary>
+            <param name="ElemID">Идентификатор элемента</param>
+            <param name="metka">Метка контура</param>
+            <param name="name">Имя контура</param>
+            <param name="group_name">Имя группы</param>
+            <param name="value_kontur">Значение контура</param>
+            <param name="value_savkon">Значение контура по умолчанию</param>
+            <param name="value_svkntr">Значение контура по умолчанию умолчанию</param>
+        </member>
+        <member name="T:SData.i_Element.eAdding_MSDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости добавления связи к элементу
+            </summary>
+            <param name="ElemID">Идентификатор элемента</param>
+            <param name="id_from">Идентификаор первого элемента</param>
+            <param name="id_to">Идентификатор второго элемента</param>
+        </member>
+        <member name="T:SData.i_Formula">
+            <summary>
+            Класс для работы с формулами у элемента
+            </summary>
+        </member>
+        <member name="M:SData.i_Formula.#ctor(SData.c_Formula,System.Int32)">
+            <summary>
+            Инициализация класса для работы с формулами
+            </summary>
+            <param name="formula">Объект содержащий в себе все данные по формуле</param>
+            <param name="formula_id">Идентификатор формулы</param>
+        </member>
+        <member name="P:SData.i_Formula.formula">
+            <summary>
+            Формула
+            </summary>
+        </member>
+        <member name="P:SData.i_Formula.id">
+            <summary>
+            Идентификатор формулы
+            </summary>
+        </member>
+        <member name="T:SData.i_Kontur">
+            <summary>
+            Класс для работы с атрибутами контуров
+            </summary>
+        </member>
+        <member name="M:SData.i_Kontur.#ctor(SData.c_Kontur,System.String)">
+            <summary>
+            Инициализация класса для работы с атрибутами контуров
+            </summary>
+            <param name="kontur">Данные о контуре</param>
+            <param name="group_name">Данные о группе контуров, в которую входит контур</param>
+        </member>
+        <member name="P:SData.i_Kontur.id">
+            <summary>
+            Идентификатор контура
+            </summary>
+            
+        </member>
+        <member name="P:SData.i_Kontur.value_kontur">
+            <summary>
+            Значение контура
+            </summary>
+            
+        </member>
+        <member name="P:SData.i_Kontur.metka">
+            <summary>
+            Метка контура
+            </summary>
+        </member>
+        <member name="P:SData.i_Kontur.name">
+            <summary>
+            Имя контура
+            </summary>
+        </member>
+        <member name="P:SData.i_Kontur.group_id">
+            <summary>
+            Идентификатор группы контуров, в которую входит данный контур
+            </summary>
+        </member>
+        <member name="P:SData.i_Kontur.group_name">
+            <summary>
+            Имя группы контуров, в которую входит данный контур
+            </summary>
+        </member>
+        <member name="P:SData.i_Kontur.value_savkon">
+            <summary>
+            Значение контура по умолчению
+            </summary>
+        </member>
+        <member name="P:SData.i_Kontur.value_svkntr">
+            <summary>
+            Значение контура по умолчению умолчанию
+            </summary>
+        </member>
+        <member name="P:SData.i_Kontur.opkon_n_par">
+            <summary>
+            Из описания контура: номер параметра (порядковый, локальный) фигурирующего в диапазоне
+            </summary>
+        </member>
+        <member name="P:SData.i_Kontur.opkon_val_from">
+            <summary>
+            Из описания контура: нижняя граница диапазона
+            </summary>
+        </member>
+        <member name="P:SData.i_Kontur.opkon_val_to">
+            <summary>
+            Из описания контура: верхняя граница диапазона
+            </summary>
+        </member>
+        <member name="P:SData.i_Kontur.wwkon">
+            <summary>
+            Ссылка на номер контура
+            </summary>
+        </member>
+        <member name="T:SData.i_MS">
+            <summary>
+            Класс для работы с данными описывающие связи 3-го порядка
+            </summary>
+        </member>
+        <member name="M:SData.i_MS.#ctor(System.Int32,SData.c_MS)">
+            <summary>
+            Конструктор объекта для работы с данными описывающие связи 3-го порядка
+            </summary>
+            <param name="id_ms">Идентификатор</param>
+            <param name="MS">Класс описывающий связи 3-го порядка</param>
+        </member>
+        <member name="M:SData.i_MS.addPMS(System.Int32)">
+            <summary>
+            Добавление параметра связи
+            </summary>
+            <param name="type">Тип параметра</param>
+            <returns>Идентификатор параметра связи</returns>
+        </member>
+        <member name="M:SData.i_MS.deletePMS(System.Int32)">
+            <summary>
+            Удаление параметра связи
+            </summary>
+            <param name="pms_nom">Идентификатор параметра связи</param>
+            <returns>Идентификатор параметра связи</returns>
+        </member>
+        <member name="M:SData.i_MS.addPMS(System.Int32,System.Int32,System.Single)">
+            <summary>
+            Добавление параметра связи
+            </summary>
+            <param name="type">Тип параметра</param>
+            <param name="wwpms">Ссылка на параметр, значение которого необходимо взять</param>
+            <param name="value">Значение добавляемого параметра</param>
+            <returns>Идентификатор параметра для связи между элементами</returns>
+        </member>
+        <member name="P:SData.i_MS.id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:SData.i_MS.id_from">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:SData.i_MS.id_to">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="E:SData.i_MS.eAdding_PMS">
+            <summary>
+            Событие возникающее в момент добавления параметра к связи между элементами
+            </summary>
+        </member>
+        <member name="E:SData.i_MS.eDeleting_PMS">
+            <summary>
+            Событие возникающее в момент удаления параметра к связи между элементами
+            </summary>
+        </member>
+        <member name="T:SData.i_MS.eAdding_PMSDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент добавления параметра к связи между элементами
+            </summary>
+            <param name="ms_id">Идентификатор текущей связи</param>
+            <param name="type">Тип параметра</param>
+            <param name="value">Значение добавляемого параметра</param>
+            <param name="wwpms">Ссылка на параметр, значение которого необходимо взять</param>
+            <returns>Идентификатор параметра для связи между элементами</returns>
+        </member>
+        <member name="T:SData.i_MS.eDeleting_PMSDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент удаления параметра к связи между элементами
+            </summary>
+            <param name="ms_id">Идентификатор текущей связи</param>
+            <param name="pms_nom">Номер параметра текущей связи</param>
+            <returns></returns>
+        </member>
+        <member name="T:SData.i_Parameter">
+            <summary>
+            Класс для работы с параметрами элемента
+            </summary>
+        </member>
+        <member name="F:SData.i_Parameter._parameter_iden">
+            <summary>
+            Список с идентификаторами параметров
+            </summary>
+        </member>
+        <member name="F:SData.i_Parameter._parameter_value">
+            <summary>
+            Список со значениями параметров
+            </summary>
+        </member>
+        <member name="M:SData.i_Parameter.#ctor(System.Int32,System.Int32,System.Collections.Generic.List{SData.c_Parameter_identification},System.Collections.Generic.List{SData.c_Parameter_value})">
+            <summary>
+            Конструктор класса для работы с параметрами элемента
+            </summary>
+            <param name="par_id">Идентификатор параметра</param>
+            <param name="par_iden_id">Идентификатор общей части параметра</param>
+            <param name="parameter_iden">Список общих частей</param>
+            <param name="parameter_value">Список</param>
+        </member>
+        <member name="M:SData.i_Parameter.SetAction(System.Boolean)">
+            <summary>
+            Установка всех статусов по параметру у параметра
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.ID">
+            <summary>
+            Имя параметра
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.name">
+            <summary>
+            Имя параметра
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.value_smart">
+            <summary>
+            Значение параметра (автоматически, вне зависимости от типа)
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.value">
+            <summary>
+            Значение параметра (числовое)
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.valueTxt">
+            <summary>
+            Значение параметра (текстовое)
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.valueTxtDef">
+            <summary>
+            Значение параметра по умолчанию (текстовое)
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.valueDef">
+            <summary>
+            Значение параметра по умолчанию (числовое)
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.comment">
+            <summary>
+            Комментарий параметра
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.type">
+            <summary>
+            Тип параметра (1-числовое; 4-текстовое;)
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.control">
+            <summary>
+            Признак контролируемого параметра
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.linkID">
+            <summary>
+            Ссылка на другое значение
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.deleted">
+            <summary>
+            Статус по удалению параметра
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.modified">
+            <summary>
+            Статус по изменению параметра
+            </summary>
+        </member>
+        <member name="P:SData.i_Parameter.added">
+            <summary>
+            Статус по добавлению параметра
+            </summary>
+        </member>
+        <member name="T:SData.i_SMod">
+            <summary>
+            Класс для работы с атрибутами структурной модели
+            </summary>
+        </member>
+        <member name="M:SData.i_SMod.#ctor(System.Int32,System.Collections.Generic.List{SData.m_SModMng.OPSTRM},System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{System.Int32}},System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.List{System.Int32}},System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}}},System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}}},System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}}},System.Collections.Generic.Dictionary{System.Int32,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}}},System.Collections.Generic.List{System.Boolean},System.Collections.Generic.List{System.Boolean},System.Collections.Generic.List{System.Boolean})">
+            <summary>
+            Инициализация класса для работы с атрибутами структурной модели
+            </summary>
+        </member>
+        <member name="M:SData.i_SMod.SetActions(System.Boolean)">
+            <summary>
+            Установка всех статусов по параметру у элемента
+            </summary>
+            <param name="done">Значение статуса</param>
+        </member>
+        <member name="P:SData.i_SMod.SMod">
+            <summary>
+            Матрица свойств
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.justSMod">
+            <summary>
+            Матрица свойств элементов "Только для"
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.justNotSMod">
+            <summary>
+            Матрица свойств элементов "Для всех, кроме"
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.GRas">
+            <summary>
+            Сетевой граф
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.Atsep">
+            <summary>
+            Список цепочек в относительных идентификаторах
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.Apara">
+            <summary>
+            Список пар
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.deleted">
+            <summary>
+            Статус по удалению элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.modified">
+            <summary>
+            Статус по изменению элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.added">
+            <summary>
+            Статус по добавлению элемента
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.kwkon">
+            <summary>
+            Количество контуров
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.adkon">
+            <summary>
+            Адрес первого контура в разделе KONTUR
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.ngkon">
+            <summary>
+            Количество групп контуров
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.tpsmod">
+            <summary>
+            Тип структурной модели
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.dlsmod">
+            <summary>
+            Количество элементов из раздела BIMATR для определения матрицы свойств
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.adsmod">
+            <summary>
+            Адрес первого элемента в разделе BIMATR для определения матрицы свойств
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.dlpara">
+            <summary>
+            Количество элементов из раздела PARA
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.adpar">
+            <summary>
+            Адрес первого элемента из раздела PARA
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.dltsep">
+            <summary>
+            Количество элементов из раздела TSEP
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.adtsep">
+            <summary>
+            Адрес первого элемента из раздела TSEP
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.dlgras">
+            <summary>
+            Количество элементов из раздела BIMATR для определения сетевого графа
+            </summary>
+        </member>
+        <member name="P:SData.i_SMod.adgras">
+            <summary>
+            Адрес первого элемента в разделе BIMATR для определения сетевого графа
+            </summary>
+        </member>
+        <member name="T:SData.m_ElemMng">
+            <summary>
+            Класс для управления данными об элементах
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.last_nran_id">
+            <summary>
+            Идентификатор последнего элемента-аналога
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.spm_objects">
+            <summary>
+            Список структурно-параметрических объектов
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.spm_objects_common">
+            <summary>
+            Список объектов-аналогов
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.ST_id_to_spec">
+            <summary>
+            Список для определения кода по идентификатору элемента
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.ST_NomStMod_id_TO_analog_elem_id">
+            <summary>
+            Словарь соответствий номера структурной модели к номеру элемента аналога
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.ST_analog_elem_id_TO_exemplar_ids">
+            <summary>
+            Список списков с идентификаторами экземпляров элемента
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.ST_analog_elem_id_TO_par_idens">
+            <summary>
+            Список списков с идентификаторами общей части параметров
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.ST_exemplar_elem_id_TO_par_values">
+            <summary>
+            Список списков с идентификаторами значений параметров
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.ST_exemplar_elem_id_TO_properties">
+            <summary>
+            Список списков для определения соответствия свойств к элементу
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.ST_analog_elem_id_TO_formula_ids">
+            <summary>
+            Список списков для определения соответствия формул к элементу
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.ST_exemplar_elem_id_TO_ms_ids">
+            <summary>
+            Список списков для определения соответствия связей 3-го порядка к элементу
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.internal_POSLED">
+            <summary>
+            Список для хранения данных раздела POSLED
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.urgent_level">
+            <summary>
+            Уровень важности для сообщений
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.errorOnLoadingSpec">
+            <summary>
+            Если ошибка при загрузке SPEC
+            </summary>
+        </member>
+        <member name="M:SData.m_ElemMng.#ctor">
+            <summary>
+            Инициализация класса для управления данными об элементах
+            </summary>
+        </member>
+        <member name="M:SData.m_ElemMng.SetParamIDsToElem(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Устанавливаем идентификаторы параметров к элементу
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор экземпляра элемента</param>
+            <param name="par_iden_id">Идентификатор общей части параметров</param>
+            <param name="par_value_id">Идентификатор значения параметра</param>
+        </member>
+        <member name="M:SData.m_ElemMng.SetFormulaIDToElemByExemplarID(System.Int32,System.Int32)">
+            <summary>
+            Устанавливаем идентификатор формулы к элементу
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор элемента экземпляра</param>
+            <param name="formula_id">Идентификатор формулы</param>
+        </member>
+        <member name="M:SData.m_ElemMng.SetPropertyIDToElemByExemplarID(System.Int32,System.Int32)">
+            <summary>
+            Устанавливаем идентификатор контура к элементу
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор элемента экземпляра</param>
+            <param name="property_id">Идентификатор контура</param>
+        </member>
+        <member name="M:SData.m_ElemMng.SetFormulaIDToElemByAnalogID(System.Int32,System.Int32)">
+            <summary>
+            Устанавливаем идентификатор формулы к элементу
+            </summary>
+            <param name="elem_analog_id">Идентификатор элемента аналога</param>
+            <param name="formula_id">Идентификатор формулы</param>
+        </member>
+        <member name="M:SData.m_ElemMng.SetMSIDToElemByExemplarID(System.Int32,System.Int32)">
+            <summary>
+            Устанавливаем идентификатор связи 3-го порядка к элементу
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор элемента экземпляра</param>
+            <param name="ms_id">Идентификатор связи 3-го порядка</param>
+        </member>
+        <member name="M:SData.m_ElemMng.SetNomStModIDToElem(System.Int32,System.Int32)">
+            <summary>
+            Устанавливаем соответствие между идентификатором структурной модели и номером элемента аналога
+            </summary>
+            <param name="elem_analog_id">Идентификатор элемента аналога</param>
+            <param name="nomstm_id">Идентификатор номера структурной модели</param>
+        </member>
+        <member name="M:SData.m_ElemMng.SetMessageUrgentLevel(System.Int32)">
+            <summary>
+            Установка уровня важности сообщений
+            </summary>
+            <param name="level">Уровень важности сообщений</param>
+        </member>
+        <member name="M:SData.m_ElemMng.GetElemExemplarIDsList(System.Int32)">
+            <summary>
+            Получение списка идентификаторов всех экземпляров
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор одного из экземпляров</param>
+            <returns>Список идентификаторов</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetDictLocalElemIDtoGlobalID(System.Int32)">
+            <summary>
+            Получить словарь соответствий локального идентификатора элемента - глобальному
+            </summary>
+            <param name="parent_id">Идентификатор родителя, в рамках которого необходимо считать локальных идентификатор</param>
+            <returns>Словарь соответствий локального идентификатора элемента - глобальному</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetDictElemIDtoElemMetka(System.Int32)">
+            <summary>
+            Получить словарь соответствий глобального идентификатора элемента и метки элемента
+            </summary>
+            <param name="parent_id">Идентификатор родителя</param>
+            <returns>Словарь соответствий глобального идентификатора элемента и метки элемента</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetDictLocalElemIDtoElemMetka(System.Int32)">
+            <summary>
+            Получить словарь соответствий локального идентификатора элемента и метки элемента
+            </summary>
+            <param name="parent_id">Идентификатор родителя</param>
+            <returns>Словарь соответствий локального идентификатора элемента и метки элемента</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetDictElemMetkatoLocalElemID(System.Int32)">
+            <summary>
+            Получить словарь соответствий метки элемента и локального идентификатора элемента
+            </summary>
+            <param name="parent_id">Идентификатор родителя</param>
+            <returns>Словарь соответствий метки элемента и локального идентификатора элемента</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetST_analog_elem_id_TO_par_idens">
+            <summary>
+            Получить cписок списков с идентификаторами общей части параметров
+            </summary>
+            <returns>Список списков с идентификаторами общей части параметров</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetST_exemplar_elem_id_TO_par_values">
+            <summary>
+            Получить cписок списков с идентификаторами значений параметров
+            </summary>
+            <returns>Список списков с идентификаторами значений параметров</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetST_analog_elem_id_TO_formula_ids">
+            <summary>
+            Получить cписок списков с идентификаторами формул у элементов
+            </summary>
+            <returns>Список списков с идентификаторами формул у элементов</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetST_exemplar_elem_id_TO_ms_ids">
+            <summary>
+            Получить cписок списков с идентификаторами связей 3-го порядка между элементами
+            </summary>
+            <returns>Список списков с идентификаторами связей 3-го порядка между элементами</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetST_exemplar_elem_id_TO_properties">
+            <summary>
+            Получить cписок списков с идентификаторами контуров между элементами
+            </summary>
+            <returns>Список списков с идентификаторами контуров между элементами</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetListNRAN">
+            <summary>
+            Получить список с номерами аналогов
+            </summary>
+            <returns>Список с номерами аналогов</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.FixST_analog_elem_id_TO_par_idens_after_Delete(System.Int32)">
+            <summary>
+            Процедура исправления ссылок на наименования параметра у элемента аналога после удаления наименования параметра
+            </summary>
+            <param name="par_iden_id">Идентификатор наименования параметра</param>
+        </member>
+        <member name="M:SData.m_ElemMng.FixST_analog_elem_id_TO_for_after_Delete(System.Int32)">
+            <summary>
+            Процедура исправления ссылок на формулы у элемента после удаления наименования параметра
+            </summary>
+            <param name="formula_id">Идентификатор формулы</param>
+        </member>
+        <member name="M:SData.m_ElemMng.FixST_exemplar_elem_id_TO_par_values_after_Delete(System.Int32)">
+            <summary>
+            Процедура исправления ссылок на значение параметра у элемента экземпляра после удаления значение параметра
+            </summary>
+            <param name="par_value_id">Идентификатор значения параметра</param>
+        </member>
+        <member name="M:SData.m_ElemMng.FixST_exemplarANDanalog_elem_id_TO_par_values_nullValues">
+            <summary>
+            Процедура исправления нулевых ссылок на данные по параметрам у элементов
+            </summary>
+        </member>
+        <member name="M:SData.m_ElemMng.Message(System.String,System.Int32)">
+            <summary>
+            Вывести сообщение диагностики.
+            100=Все сообщения; 
+            90-99=Про инициализацию данных;
+            80-89=Про исполнение методов (81=Начало метода; 80=Конец метода);
+            50-Ключевые этапы;
+            10-Ошибки;
+            0-Без сообщений.
+            </summary>
+            <param name="message_text">Сообщение</param>
+            <param name="message_urgent_level">Уровень важности сообщения</param>
+        </member>
+        <member name="M:SData.m_ElemMng.CountIspAN(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Процедура формирования массива ispAN для записи в СПБ
+            </summary>
+            <param name="nran">Массив NRAN</param>
+            <returns>Массив ADAN</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetElemCount">
+            <summary>
+            Метод позволяет узнать общее количество экземпляров элемента в SData
+            </summary>
+            <returns>Количество экземпляров в SData</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetElemAnalCount">
+            <summary>
+            Метод позволяет узнать общее количество аналогов элемента в SData
+            </summary>
+            <returns>Количество аналогов в SData</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.DelElem(System.Int32)">
+            <summary>
+            Удаление элемента
+            </summary>
+            <param name="exemplar_elem_id">Идентификатор экземпляра элемента</param>
+        </member>
+        <member name="M:SData.m_ElemMng.DelElem(System.Int32,System.Boolean)">
+            <summary>
+            Удаление элемента
+            </summary>
+            <param name="exemplar_elem_id">Идентификатор экземпляра элемента</param>
+            <param name="just_mark">Не удалять, а только пометить удаленным</param>
+        </member>
+        <member name="M:SData.m_ElemMng.DelElem(System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Удаление элемента
+            </summary>
+            <param name="exemplar_elem_id">Идентификатор экземпляра элемента</param>
+            <param name="just_mark">Не удалять, а только пометить удаленным</param>
+            <param name="donot_edit_brothers">Не исправлять структуру братьев, для исключения элемента из структуры</param>
+        </member>
+        <member name="M:SData.m_ElemMng.AddElem(System.String,System.String,System.Int32)">
+            <summary>
+            Добавление элемента в базу
+            </summary>
+            <param name="name">Имя элемента</param>
+            <param name="special_name">Код элемента</param>
+            <param name="parent_id">Идентификатор родителя</param>
+            <returns>Идентификатор вновь добавленного элемента</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetGlobalCount">
+            <summary>
+            Получение "глобального" количества элементов
+            </summary>
+            <returns>Количество элементов</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetElem(System.Int32)">
+            <summary>
+            Получить класс для работы с атрибутами элемента
+            </summary>
+            <param name="id">Идентификатор элемента</param>
+            <returns>Объект типа i_Element</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetElem(System.Int32,SData.m_ElemMng.GetElemHint)">
+            <summary>
+            Получить класс для работы с атрибутами элемента
+            </summary>
+            <param name="id">Идентификатор</param>
+            <param name="hint">Принцип поиска элемента</param>
+            <returns>Объект типа i_Element</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetElem(System.Int32,System.Int32)">
+            <summary>
+            Получить класс для работы с атрибутами элемента
+            </summary>
+            <param name="parent_id">Идентификатор родительского элемента</param>
+            <param name="local_id">Локальный (в пределах одной ветки, с 1 начиная) идентификатор элемента</param>
+            <returns>Объект типа i_Element</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetElem(System.String)">
+            <summary>
+            Получить класс для работы с атрибутами элемента
+            </summary>
+            <param name="spec">Код элемента</param>
+            <returns>Объект типа i_Element для первого экземпляра</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.GetElemIdByParId(System.Int32)">
+            <summary>
+            Получение идентификатора элемента по глобальному номеру параметра
+            </summary>
+            <param name="ParId">Идентификатор параметра</param>
+            <returns>Идентификатор элемента</returns>
+        </member>
+        <member name="M:SData.m_ElemMng.SetInResh(System.Int32,System.Boolean)">
+            <summary>
+            Включить элемент в решение
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="include_into_resh">Признак включения</param>
+        </member>
+        <member name="M:SData.m_ElemMng.loadElemFromSPB(System.String)">
+            <summary>
+            Загружаем массивы элементов из СПБ файла
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+        </member>
+        <member name="M:SData.m_ElemMng.saveElemToSPB(System.String)">
+            <summary>
+            Выгружаем массивы элементов в СПБ файл
+            </summary>
+            <param name="filename">Имя файла</param>
+        </member>
+        <member name="M:SData.m_ElemMng.statGet">
+            <summary>
+            Получение статистики по использованию элементов
+            </summary>
+            <returns>Данные статистики</returns>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededInitializeParValues">
+            <summary>
+            Событие возникающее в момент необходимости инициализации списка параметров у элемента экземпляра
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededAddingPar">
+            <summary>
+            Событие возникающее в момент необходимости добавления параметра
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededDeletingPar">
+            <summary>
+            Событие возникающее в момент необходимости удаления параметра
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededDeletingFor">
+            <summary>
+            Событие возникающее в момент необходимости удаления параметра
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededAddingFor">
+            <summary>
+            Событие возникающее в момент необходимости добавления формулы
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededAddingKontur">
+            <summary>
+            Событие возникающее в момент необходимости добавления контура
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededAddingMS">
+            <summary>
+            Событие возникающее в момент необходимости добавления связи
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededParDict">
+            <summary>
+            Событие возникающее в момент необходимости словаря параметров
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededFormulsList">
+            <summary>
+            Событие возникающее в момент необходимости списка формул
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeededTsepList">
+            <summary>
+            Событие возникающее в момент необходимости списка цепочек
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeedToDeleteParValue">
+            <summary>
+            Событие возникающее в момент необходимости удалить значение параметра
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeedToDeleteParIden">
+            <summary>
+            Событие возникающее в момент необходимости удалить наименование параметра
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeedToDeleteFormula">
+            <summary>
+            Событие возникающее в момент необходимости удалить формулу
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeedToDeleteKontur">
+            <summary>
+            Событие возникающее в момент необходимости удалить контур
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eNeedToDeleteMS">
+            <summary>
+            Событие возникающее в момент необходимости удалить связь
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eWhantToSay">
+            <summary>
+            Событие возникающее в момент необходимости вывести сообщение
+            </summary>
+        </member>
+        <member name="E:SData.m_ElemMng.eWhantGetSData">
+            <summary>
+            Событие возникающее в момент необходимости получения базы текущего элемента
+            </summary>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededInitializeParValuesDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости инициализации списка параметров у элемента экземпляра
+            </summary>
+            <param name="par_analog_ids">Список идентификаторов на общую часть параметров</param>
+            <returns>Список идентификаторов вновь созданных параметров</returns>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededAddingParDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости добавления параметра
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="p_name">Имя параметра</param>
+            <param name="p_value">Значение параметра</param>
+            <param name="p_type">Тип параметра</param>
+            <param name="p_comment">Комментарий к параметру</param>
+            <param name="p_wwpar">Ссылка на иное значение</param>
+            <param name="p_control">Признак контроля параметра</param>
+            <param name="sameDefault">Устанавливать такое же значение, значением по умолчанию?</param>
+            <returns>Идентификатор вновь создаваемого параметра</returns>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededDeletingParDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости удаления параметра
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор экземпляра элемента</param>
+            <param name="par_id">Идентификатор значения параметра</param>
+            <param name="force_link">Удалять, даже если на него ссылаются</param>
+            <returns>0 - все прошло успешно, [Число] - номер параметра, который ссылается на данный параметр</returns>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededDeletingForDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости удаления формулы
+            </summary>
+            <param name="formula_id">Идентификатор формулы</param>
+            <returns>0 - все прошло успешно</returns>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededAddingForDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости добавления формулы
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="formula">Формула</param>
+            <returns></returns>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededAddingKonturDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости добавления контура
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="metka">Метка контура</param>
+            <param name="name">Имя контура</param>
+            <param name="group_name">Имя группы</param>
+            <param name="value_kontur">Значение контура</param>
+            <param name="value_savkon">Значение контура по умолчанию</param>
+            <param name="value_svkntr">Значение контура по умолчанию умолчанию</param>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededAddingMSDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости добавления связи
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="id_from">Идентификаор первого элемента</param>
+            <param name="id_to">Идентификатор второго элемента</param>  
+            <returns>Идентификатор связи</returns>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededParDictDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости словаря параметров
+            </summary>
+            <param name="par_ids"></param>
+            <returns>Словарь параметров</returns>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededFormulsListDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости списка формул
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <returns>Список формул</returns>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeededTsepListDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости списка цепочек
+            </summary>
+            <param name="nomstm_id">Идентификатор структурной модели</param>
+            <returns>Список Цепочек</returns>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeedToDeleteParValueDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимомти удалить значение параметра
+            </summary>
+            <param name="par_value_id">Идентификатор значения парметра</param>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeedToDeleteParIdenDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимомти удалить наименование параметра
+            </summary>
+            <param name="par_iden_id">Идентификатор наименования параметра</param>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeedToDeleteFormulaDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимомти удалить формулу
+            </summary>
+            <param name="formula_id">Идентификатор наименования параметра</param>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeedToDeleteKonturDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимомти удалить контур
+            </summary>
+            <param name="kontur_id">Идентификатор контура</param>
+        </member>
+        <member name="T:SData.m_ElemMng.eNeedToDeleteMSDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимомти удалить связь
+            </summary>
+            <param name="ms_id">Идентификатор связи</param>
+        </member>
+        <member name="T:SData.m_ElemMng.eWhantToSayDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости вывести сообщение
+            </summary>
+            <param name="message">Сообщение</param>
+        </member>
+        <member name="T:SData.m_ElemMng.eWhantGetSDataDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости получения базы текущего элемента
+            </summary>
+            <returns>База текущего элемента</returns>
+        </member>
+        <member name="T:SData.m_ElemMng.GetElemHint">
+            <summary>
+            Режимы работы метода получения класса i_Element
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.GetElemHint.byExemplarID">
+            <summary>
+            По идентификатору экземпляра
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.GetElemHint.byAnalogID">
+            <summary>
+            По идентификатору аналога
+            </summary>
+        </member>
+        <member name="F:SData.m_ElemMng.GetElemHint.byNomStModID">
+            <summary>
+            По идентификатору номера структурной модели
+            </summary>
+        </member>
+        <member name="T:SData.m_ForMng">
+            <summary>
+            Класс для управления данными об формулах у элементов
+            </summary>
+        </member>
+        <member name="F:SData.m_ForMng.spm_formuls">
+            <summary>
+            Список объектов для хранения формул
+            </summary>
+        </member>
+        <member name="F:SData.m_ForMng.urgent_level">
+            <summary>
+            Уровень важности для сообщений
+            </summary>
+        </member>
+        <member name="M:SData.m_ForMng.#ctor">
+            <summary>
+            Инициализация класса управления
+            </summary>
+        </member>
+        <member name="M:SData.m_ForMng.SetMessageUrgentLevel(System.Int32)">
+            <summary>
+            Установка уровня важности сообщений (По умолчанию 0)
+            </summary>
+            <param name="level">Уровень важности сообщений</param>
+        </member>
+        <member name="M:SData.m_ForMng.Message(System.String,System.Int32)">
+            <summary>
+            Вывести сообщение диагностики.
+            100=Все сообщения; 
+            90-99=Про инициализацию данных;
+            80-89=Про исполнение методов (81=Начало метода; 80=Конец метода);
+            50-Ключевые этапы;
+            10-Ошибки;
+            0-Без сообщений.
+            </summary>
+            <param name="message_text">Сообщение</param>
+            <param name="message_urgent_level">Уровень важности сообщения</param>
+        </member>
+        <member name="M:SData.m_ForMng.GetFormula(System.Int32)">
+            <summary>
+            Получить данные по формуле
+            </summary>
+            <param name="formula_id">Идентификатор формулы</param>
+            <returns>Объект i_Formula</returns>
+        </member>
+        <member name="M:SData.m_ForMng.GetFormula(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Получить данные по формулам
+            </summary>
+            <param name="formula_ids">Список идентификаторов формул</param>
+            <returns>Список объектов i_Formula</returns>
+        </member>
+        <member name="M:SData.m_ForMng.DelFormula(System.Int32)">
+            <summary>
+            Удалить формулу
+            </summary>
+            <param name="formula_id">Идентификатор формулы</param>
+        </member>
+        <member name="M:SData.m_ForMng.GetFormuls(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Получить список формул
+            </summary>
+            <param name="formuls_id">Список идентификаторов формул</param>
+            <returns>Список формул</returns>
+        </member>
+        <member name="M:SData.m_ForMng.AddFormula(System.Int32,System.String)">
+            <summary>
+            Добавление формулы к элементу
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор элемента экземпляра</param>
+            <param name="formula">Текст формулы</param>
+            <returns>Идентификатор на вновь созданную формулу</returns>
+        </member>
+        <member name="M:SData.m_ForMng.loadForFromSPB(System.String)">
+            <summary>
+            Загружаем массивы формул из СПБ базы
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+        </member>
+        <member name="M:SData.m_ForMng.saveForToSPB(System.String,System.Collections.Generic.List{System.Collections.Generic.List{System.Int32}})">
+            <summary>
+            Сохраняем массивы формул в СПБ файл
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+            <param name="ST_elem_id_TO_formula_ids">Список списков с идентификаторами формул к элементу</param>
+        </member>
+        <member name="E:SData.m_ForMng.eWhantToSay">
+            <summary>
+            Событие возникающее в момент необходимости вывести сообщение
+            </summary>
+        </member>
+        <member name="E:SData.m_ForMng.eNeededSetFormulaIDToElemByExemplar">
+            <summary>
+            Событие возникающее в момент, когда нужно присоеденить новую формулу к параметру
+            </summary>
+        </member>
+        <member name="E:SData.m_ForMng.eNeededSetFormulaIDToElemByAnalog">
+            <summary>
+            Событие возникающее в момент, когда нужно присоеденить новую формулу к параметру
+            </summary>
+        </member>
+        <member name="E:SData.m_ForMng.eNeededCheckForInElement">
+            <summary>
+            События возникающее в момент, когда нужно проверить формулу из списка уже существующих у элемента
+            </summary>
+        </member>
+        <member name="E:SData.m_ForMng.eNeedToFixST_analog_elem_id_TO_for_after_Delete">
+            <summary>
+            Событие возникающее в момент, когда нужно исправить ссылки на наименования параметров
+            </summary>
+        </member>
+        <member name="T:SData.m_ForMng.eWhantToSayDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости вывести сообщение
+            </summary>
+            <param name="message">Сообщение</param>
+        </member>
+        <member name="T:SData.m_ForMng.eNeededSetFormulaIDToElemByExemplarDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно присоеденить новую формулу к параметру
+            </summary>
+        </member>
+        <member name="T:SData.m_ForMng.eNeededSetFormulaIDToElemByAnalogDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно присоеденить новую формулу к параметру
+            </summary>
+        </member>
+        <member name="T:SData.m_ForMng.eNeededCheckForInElementDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно проверить формулу из списка уже существующих у элемента
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="formula">Формула</param>
+            <returns>Глобальный идентификатор формулы, если нашлась, в противном случае -1</returns>
+        </member>
+        <member name="T:SData.m_ForMng.eNeedToFixST_analog_elem_id_TO_for_after_DeleteDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно исправить ссылки на формулы
+            </summary>
+            <param name="formula_id">Идентификатор формулы</param>
+        </member>
+        <member name="T:SData.m_KonturMng">
+            <summary>
+            Класс для управления работы с логическими параметрами объекта (контурами)
+            </summary>
+        </member>
+        <member name="F:SData.m_KonturMng.spm_konturs">
+            <summary>
+            Динамический массив с контурами
+            </summary>
+        </member>
+        <member name="F:SData.m_KonturMng.kon_grkon">
+            <summary>
+            Динамический массив групп контуров
+            </summary>
+        </member>
+        <member name="F:SData.m_KonturMng.kon_GRK">
+            <summary>
+            Динамический массив для хранения GRK
+            </summary>
+        </member>
+        <member name="F:SData.m_KonturMng.urgent_level">
+            <summary>
+            Уровень важности сообщений
+            </summary>
+        </member>
+        <member name="M:SData.m_KonturMng.#ctor">
+            <summary>
+            Инициализация класса для управления работы с логическими параметрами объекта (контурами)
+            </summary>
+        </member>
+        <member name="M:SData.m_KonturMng.SetMessageUrgentLevel(System.Int32)">
+            <summary>
+            Установка уровня важности сообщений
+            </summary>
+            <param name="level">Уровень важности сообщений</param>
+        </member>
+        <member name="M:SData.m_KonturMng.Message(System.String,System.Int32)">
+            <summary>
+            Вывести сообщение диагностики.
+            100=Все сообщения; 
+            90-99=Про инициализацию данных;
+            80-89=Про исполнение методов (81=Начало метода; 80=Конец метода);
+            50-Ключевые этапы;
+            10-Ошибки;
+            0-Без сообщений.
+            </summary>
+            <param name="message_text">Сообщение</param>
+            <param name="message_urgent_level">Уровень важности сообщения</param>
+        </member>
+        <member name="M:SData.m_KonturMng.GetKonturs(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Получаем список контуров в обертке i_Kontur у элемента
+            </summary>
+            <param name="konturs_ids">Спиок идентификаторов контуров</param>
+            <returns>Список классов i_Kontur</returns>
+        </member>
+        <member name="M:SData.m_KonturMng.GetGrKonNames">
+            <summary>
+            Метод получения списка имен групп конутров
+            </summary>
+            <returns>Список с именами групп</returns>
+        </member>
+        <member name="M:SData.m_KonturMng.GetDictKontLocalIDtoKontMetka(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Получаем словарь соответствия локального номера контура к метки
+            </summary>
+            <param name="konturs_id">Идентификаторы контуров</param>
+            <returns>Словарь соответствия локального номера контура к метки</returns>
+        </member>
+        <member name="M:SData.m_KonturMng.GetDictKontMetkatoKontLocalID(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Получаем словарь соответствия метки контура к локальному номеру контура
+            </summary>
+            <param name="konturs_id">Идентификаторы контуров</param>
+            <returns>Словарь соответствия метки контура к локальному номеру контура</returns>
+        </member>
+        <member name="M:SData.m_KonturMng.AddOrGetGrkonID(System.String)">
+            <summary>
+            Добавить или получить идентификатор группы контуров.
+            Если group_name не существует, то будет создана новая группа с новым именем.
+            </summary>
+            <param name="group_name">Имя группы контуров</param>
+            <returns>Идентификатор группы контуров</returns>
+        </member>
+        <member name="M:SData.m_KonturMng.AddKontur(System.Int32,SData.i_Kontur)">
+            <summary>
+            Добавляем контур к элементу
+            </summary>
+            <param name="ElemID">Идентификатор элемента</param>
+            <param name="kontur">Объект типа i_Kontur</param>
+        </member>
+        <member name="M:SData.m_KonturMng.AddKontur(System.Int32,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Добавляем контур к элементу
+            </summary>
+            <param name="ElemID">Идентификатор элемента</param>
+            <param name="metka">Метка контура</param>
+            <param name="name">Имя контура</param>
+            <param name="group_name">Имя группы</param>
+            <param name="value_kontur">Значение контура</param>
+            <param name="value_savkon">Значение контура по умолчанию</param>
+            <param name="value_svkntr">Значение контура по умолчанию умолчанию</param>
+        </member>
+        <member name="M:SData.m_KonturMng.DeleteKontur(System.Int32)">
+            <summary>
+            Удаление контура
+            </summary>
+            <param name="kontur_id">Идентификатор контура</param>
+        </member>
+        <member name="M:SData.m_KonturMng.saveKonturToSPB(System.String,System.Collections.Generic.List{System.Collections.Generic.List{System.Int32}})">
+            <summary>
+            Сохраняем массивы контуров в СПБ базу
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+            <param name="ST_exemplar_elem_id_TO_properties_ids">Список списков для установки соответствия контуров к элементам</param>
+        </member>
+        <member name="M:SData.m_KonturMng.loadKonturFromSPB(System.String)">
+            <summary>
+            Загружаем массивы контуров из СПБ базы
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+        </member>
+        <member name="E:SData.m_KonturMng.eNeededSetPropertyIDToElem">
+            <summary>
+            Событие возникающее в момент, когда нужно присоеденить новый контур к элементу
+            </summary>
+        </member>
+        <member name="E:SData.m_KonturMng.eWhantToSay">
+            <summary>
+            Событие возникающее в момент необходимости вывести сообщение
+            </summary>
+        </member>
+        <member name="T:SData.m_KonturMng.ST_GRK">
+            <summary>
+            Структура для хранения GRK
+            </summary>
+        </member>
+        <member name="T:SData.m_KonturMng.t_OPKON">
+            <summary>
+            Структура для хранения описания контуров
+            </summary>
+        </member>
+        <member name="T:SData.m_KonturMng.eNeededSetPropertyIDToElemDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно присоеденить новый контур к элементу
+            </summary>
+        </member>
+        <member name="T:SData.m_KonturMng.eWhantToSayDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости вывести сообщение
+            </summary>
+        </member>
+        <member name="T:SData.m_MS">
+            <summary>
+            Класс для управления данными по связям 3-го порядка между элементами
+            </summary>
+        </member>
+        <member name="F:SData.m_MS.urgent_level">
+            <summary>
+            Уровень важности для сообщений
+            </summary>
+        </member>
+        <member name="M:SData.m_MS.#ctor">
+            <summary>
+            Инициализация класса управления
+            </summary>
+        </member>
+        <member name="M:SData.m_MS.SetMessageUrgentLevel(System.Int32)">
+            <summary>
+            Установка уровня важности сообщений (По умолчанию 0)
+            </summary>
+            <param name="level">Уровень важности сообщений</param>
+        </member>
+        <member name="M:SData.m_MS.Message(System.String,System.Int32)">
+            <summary>
+            Вывести сообщение диагностики.
+            100=Все сообщения; 
+            90-99=Про инициализацию данных;
+            80-89=Про исполнение методов (81=Начало метода; 80=Конец метода);
+            50-Ключевые этапы;
+            10-Ошибки;
+            0-Без сообщений.
+            </summary>
+            <param name="message_text">Сообщение</param>
+            <param name="message_urgent_level">Уровень важности сообщения</param>
+        </member>
+        <member name="M:SData.m_MS.GetMS(System.Int32)">
+            <summary>
+            Получить одну ms
+            </summary>
+            <param name="id">идентификатор MS</param>
+            <returns>Класс i_MS</returns>
+        </member>
+        <member name="M:SData.m_MS.GetPMS(System.Int32)">
+            <summary>
+            Получение списка для работы с данными по связям 3-го порядка между элементами
+            </summary>
+            <param name="ms_id">Идентификатор</param>
+            <returns>Список для работы с данными по связям 3-го порядка между элементами</returns>
+        </member>
+        <member name="M:SData.m_MS.AddMS(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Добавление связи
+            </summary>
+            <param name="exemplar_elem_id">Идентификатор экземпляра элемента</param>
+            <param name="id_from">Идентификатор элемента начала отношения</param>
+            <param name="id_to">Идентификаторо связанного элемента</param>
+            <returns>Идентификаторо вновь созданной связи</returns>
+        </member>
+        <member name="M:SData.m_MS.DeleteMS(System.Int32)">
+            <summary>
+            Удаление связи
+            </summary>
+            <param name="ms_id">Идентификатор связи</param>
+        </member>
+        <member name="M:SData.m_MS.DeletePMS(System.Int32,System.Int32)">
+            <summary>
+            Удаление параметра связи
+            </summary>
+            <param name="ms_id">Идентификатор связи</param>
+            <param name="pms_nom">Номер параметра связи</param>
+        </member>
+        <member name="M:SData.m_MS.loadMSFromSPB(System.String)">
+            <summary>
+            Чтение данных в массивы  из СПБ
+            </summary>
+            <param name="filename">Файл СПБ</param>
+        </member>
+        <member name="M:SData.m_MS.saveMSToSPB(System.String,System.Collections.Generic.List{System.Collections.Generic.List{System.Int32}})">
+            <summary>
+            Запись данных из массивов в СПБ
+            </summary>
+            <param name="filename">Файл СПБ</param>
+            <param name="ST_elem_id_TO_ms_ids">Список списков для определения принадлежности связей и элементов в СПБ</param>
+        </member>
+        <member name="E:SData.m_MS.eWhantToSay">
+            <summary>
+            Событие возникающее в момент необходимости вывести сообщение
+            </summary>
+        </member>
+        <member name="E:SData.m_MS.eNeededSetMSIDToElemByExemplar">
+            <summary>
+            Событие возникающее в момент, когда нужно присоеденить новую формулу к параметру
+            </summary>
+        </member>
+        <member name="T:SData.m_MS.eWhantToSayDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости вывести сообщение
+            </summary>
+            <param name="message">Сообщение</param>
+        </member>
+        <member name="T:SData.m_MS.eNeededSetMSIDToElemByExemplarDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно присоеденить новую формулу к параметру
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор экземпляра</param>
+            <param name="ms_id">Идентификатор связи</param>
+        </member>
+        <member name="T:SData.m_ParMng">
+            <summary>
+            Класс для управления данными по параметрам у элементов
+            </summary>
+        </member>
+        <member name="F:SData.m_ParMng.spm_parameters_iden">
+            <summary>
+            Список с идентификаторами параметров
+            </summary>
+        </member>
+        <member name="F:SData.m_ParMng.spm_parameters_values">
+            <summary>
+            Список со значениями параметров
+            </summary>
+        </member>
+        <member name="F:SData.m_ParMng.urgent_level">
+            <summary>
+            Уровень важности сообщений
+            </summary>
+        </member>
+        <member name="M:SData.m_ParMng.#ctor">
+            <summary>
+            Инициализация класса для управления данными по параметрам у элементов
+            </summary>
+        </member>
+        <member name="M:SData.m_ParMng.InitializeParValues(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Инициализация новых параметров на основе списка идентификаторов параметров у аналога
+            </summary>
+            <param name="par_analog_ids">Список идентификаторов параметров у аналога</param>
+            <returns>Список идентификаторов параметров у экземпляра</returns>
+        </member>
+        <member name="M:SData.m_ParMng.SetMessageUrgentLevel(System.Int32)">
+            <summary>
+            Установка уровня важности сообщений
+            </summary>
+            <param name="level">Уровень важности сообщений</param>
+        </member>
+        <member name="M:SData.m_ParMng.GetPar(System.Int32)">
+            <summary>
+            Получить класс для работы с атрибутами параметра
+            </summary>
+            <param name="id">Глобальный идентификтор параметра</param>
+            <returns>Объект типа i_Parameter</returns>
+        </member>
+        <member name="M:SData.m_ParMng.GetPars(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Получить список классов для работы с атрибутами параметра
+            </summary>
+            <param name="ids">Глобальный список идентификторов параметров</param>
+            <returns>Объект типа i_Parameter</returns>
+        </member>
+        <member name="M:SData.m_ParMng.GetParCount">
+            <summary>
+            Получить общее количество параметров
+            </summary>
+            <returns>Количество параметров</returns>
+        </member>
+        <member name="M:SData.m_ParMng.AddPar(System.Int32,System.String,System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Добавление нового параметра
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="p_name">Имя параметра</param>
+            <param name="p_value">Значение параметра</param>
+            <param name="p_type">Тип параметра</param>
+            <param name="p_comment">Комментарий к параметру</param>
+            <param name="p_wwpar">Ссылка на значение у другого параметра (идентификатор параметра, на значение которого ссылаемся)</param>
+            <param name="p_control">Признак контролируемости</param>
+            <param name="sameDefault">Установить значение по умолчанию, такое же как и само значение?</param>
+            <param name="perform_for_other_exemplars">Добавлять у экземпляров элемента</param>
+            <returns>Идентификатор вновь созданного параметра</returns>
+        </member>
+        <member name="M:SData.m_ParMng.DeletePar(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Удаление параметра
+            </summary>
+            <param name="elem_exemplar_id">Идентификатор экземпляра элемента</param>
+            <param name="par_value_id">Идентефикатор значения параметра</param>
+            <param name="force_if_link_occurs">Удалить, даже если на этот параметр ссылаются другие параметры</param>
+            <returns>Номер параметра, который ссылается на удаляемый параметр, 0 - удаление прошло успешно или [отрицательное число] - другие ошибки</returns>
+        </member>
+        <member name="M:SData.m_ParMng.DeleteParValue(System.Int32)">
+            <summary>
+            Удаление значения параметра
+            </summary>
+            <param name="par_value_id">Идентификатор значения параметра</param>
+        </member>
+        <member name="M:SData.m_ParMng.DeleteParIden(System.Int32)">
+            <summary>
+            Удаление наименования параметра
+            </summary>
+            <param name="par_iden_id">Идентификатор наименования параметра</param>
+        </member>
+        <member name="M:SData.m_ParMng.Message(System.String,System.Int32)">
+            <summary>
+            Вывести сообщение диагностики.
+            100=Все сообщения; 
+            90-99=Про инициализацию данных;
+            80-89=Про исполнение методов (81=Начало метода; 80=Конец метода);
+            50-Ключевые этапы;
+            10-Ошибки;
+            0-Без сообщений.
+            </summary>
+            <param name="message_text">Сообщение</param>
+            <param name="message_urgent_level">Уровень важности сообщения</param>
+        </member>
+        <member name="M:SData.m_ParMng.GetParDictForElem(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Получить словарь соответствия имени параметра к глобальному идентификатору параметра
+            </summary>
+            <param name="par_ids">Список глобальных идентификаторов параметров</param>
+            <returns>Словарь соответствия имени параметра к глобальному идентификатору параметра</returns>
+        </member>
+        <member name="M:SData.m_ParMng.loadParFromSPB(System.String)">
+            <summary>
+            Загружаем массивы параметров из СПБ базы
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+        </member>
+        <member name="M:SData.m_ParMng.saveParToSPB(System.String,System.Collections.Generic.List{System.Collections.Generic.List{System.Int32}},System.Collections.Generic.List{System.Collections.Generic.List{System.Int32}})">
+            <summary>
+            Сохраняем массивы параметров в СПБ файл
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+            <param name="ST_analog_elem_id_TO_par_idens">Список списков с указанием идентификаторов элементов к идентификаторам общей части параметров</param>
+            <param name="ST_exemplar_elem_id_TO_par_values">Список списков с указанием идентификаторов элементов к идентификаторам уникальной части параметров</param>
+        </member>
+        <member name="M:SData.m_ParMng.statGet">
+            <summary>
+            Получение статистики по параметрам
+            </summary>
+            <returns>Данные статистики</returns>
+        </member>
+        <member name="E:SData.m_ParMng.eNeededElemExemplarIDs">
+            <summary>
+            Событие возникающее в момент, когда нужен список всех экземпляров
+            </summary>
+        </member>
+        <member name="E:SData.m_ParMng.eNeededParValuesIds">
+            <summary>
+            Событие возникающее в момент, когда нужен список всех идентификаторов значений параметров у экземпляра элемента
+            </summary>
+        </member>
+        <member name="E:SData.m_ParMng.eNeededSetParamIDsToElem">
+            <summary>
+            Событие возникающее в момент, когда нужно присоеденить новый параметр к элементу
+            </summary>
+        </member>
+        <member name="E:SData.m_ParMng.eNeedToFixST_analog_elem_id_TO_par_idens_after_Delete">
+            <summary>
+            Событие возникающее в момент, когда нужно исправить ссылки на наименования параметров
+            </summary>
+        </member>
+        <member name="E:SData.m_ParMng.eNeedToFixST_exemplar_elem_id_TO_par_values_after_Delete">
+            <summary>
+            Событие возникающее в момент, когда нужно исправить ссылки на значения параметров
+            </summary>
+        </member>
+        <member name="E:SData.m_ParMng.eNeedToFixST_exemplarANDanalog_elem_id_TO_par_values_nullValues">
+            <summary>
+            Событие возникающее в момент, когда нужно исправить нулевые ссылки у элементов
+            </summary>
+        </member>
+        <member name="E:SData.m_ParMng.eNeededCheckParNameInElement">
+            <summary>
+            События возникающее в момент, когда нужно проверить имя параметра элемента из списка уже существующих параметров
+            </summary>
+        </member>
+        <member name="E:SData.m_ParMng.eNeededNRANList">
+            <summary>
+            Событие возникающее в момент, когда необходимо получить список значений NRAN
+            </summary>
+        </member>
+        <member name="E:SData.m_ParMng.eWantToSay">
+            <summary>
+            Событие возникающее в момент необходимости вывести сообщение
+            </summary>
+        </member>
+        <member name="T:SData.m_ParMng.eNeededElemExemplarIDsDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужен список всех экземпляров
+            </summary>
+        </member>
+        <member name="T:SData.m_ParMng.eNeededParValuesIdsDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужен список всех идентификаторов значений параметров у экземпляра элемента
+            <param name="elem_exemplar_id">Идентификатор экземпляра элемента</param>
+            </summary>
+        </member>
+        <member name="T:SData.m_ParMng.eNeededSetParamIDsToElemDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно присоеденить новый параметр к элементу
+            </summary>
+        </member>
+        <member name="T:SData.m_ParMng.eNeedToFixST_analog_elem_id_TO_par_idens_after_DeleteDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно исправить ссылки на наименования параметров
+            </summary>
+            <param name="par_iden_id">Идентификатор наименования параметра, относительно которого необходимо исправлять</param>
+        </member>
+        <member name="T:SData.m_ParMng.eNeedToFixST_exemplar_elem_id_TO_par_values_after_DeleteDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно исправить ссылки на значения параметров
+            </summary>
+            <param name="par_value_id">Идентификатор значения параметра, относительно которого необходимо исправлять</param>
+        </member>
+        <member name="T:SData.m_ParMng.eNeedToFixST_exemplarANDanalog_elem_id_TO_par_values_nullValuesDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно исправить нулевые ссылки у элементов
+            </summary>
+        </member>
+        <member name="T:SData.m_ParMng.eNeededCheckParNameInElementDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно проверить имя параметра элемента из списка уже существующих параметров
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <param name="par_name">Имя параметра</param>
+            <returns>Глобальный идентификатор параметра, если нашелсся параметр с таким именем, в противном случае -1</returns>
+        </member>
+        <member name="T:SData.m_ParMng.eNeededNRANListDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда необходимо получить список значений NRAN
+            </summary>
+            <returns>Список значений NRAN</returns>
+        </member>
+        <member name="T:SData.m_ParMng.eWantToSayDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости вывести сообщение
+            </summary>
+            <param name="message">Сообщение</param>
+        </member>
+        <member name="T:SData.m_SModMng">
+            <summary>
+            Класс управления данными структурных моделей
+            </summary>
+        </member>
+        <member name="M:SData.m_SModMng.#ctor">
+            <summary>
+            Инициализация класса управления структурными моделями
+            </summary>
+        </member>
+        <member name="M:SData.m_SModMng.SetMessageUrgentLevel(System.Int32)">
+            <summary>
+            Установка уровня важности сообщений
+            </summary>
+            <param name="level">Уровень важности сообщений</param>
+        </member>
+        <member name="M:SData.m_SModMng.Message(System.String,System.Int32)">
+            <summary>
+            Вывести сообщение диагностики.
+            100=Все сообщения; 
+            90-99=Про инициализацию данных;
+            80-89=Про исполнение методов (81=Начало метода; 80=Конец метода);
+            50-Ключевые этапы;
+            10-Ошибки;
+            0-Без сообщений.
+            </summary>
+            <param name="message_text">Сообщение</param>
+            <param name="message_urgent_level">Уровень важности сообщения</param>
+        </member>
+        <member name="M:SData.m_SModMng.GetSMod(System.Int32)">
+            <summary>
+            Получить экземпляр класса для управления атрибутами структурной модели
+            </summary>
+            <param name="id">Идентификатор структурной модели</param>
+            <returns>Класс для управления атрибутами структурной модели</returns>
+        </member>
+        <member name="M:SData.m_SModMng.CreateSMod">
+            <summary>
+            Создать структурную модель у элемента (Тип модели будет установлен как "GRM")
+            </summary>
+            <returns>Идентификатор вновь созданной структурной модели</returns>
+        </member>
+        <member name="M:SData.m_SModMng.CreateSMod(System.String)">
+            <summary>
+            Создать структурную модель у элемента
+            </summary>
+            <param name="smod_type_name">Тип создаваемой модели</param>
+            <returns>Идентификатор вновь созданной структурной модели</returns>
+        </member>
+        <member name="M:SData.m_SModMng.DeleteSMod(SData.i_Element)">
+            <summary>
+            Удалить структурную модель у элемента
+            </summary>
+            <param name="element">Элемент СПБ</param>
+        </member>
+        <member name="M:SData.m_SModMng.saveSModToSPB(System.String)">
+            <summary>
+            Сохраняем массивы с описаниями структурных моделей в СПБ
+            </summary>
+            <param name="filename">Имя СПБ файла</param>
+        </member>
+        <member name="M:SData.m_SModMng.loadSModFromSPB(System.String)">
+            <summary>
+            Загрузка массивов из базы СПБ
+            </summary>
+            <param name="filename">Имя файла с базой СПБ</param>
+        </member>
+        <member name="M:SData.m_SModMng.convertPropBimatrListToMatrMarksDict(System.Collections.Generic.Dictionary{System.Int32,System.String},System.Collections.Generic.Dictionary{System.Int32,System.String},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Матрица свойств объекта.
+            Конвертирует список элементов типа int из раздела BIMATR в словарь со списком соответствий метки элемента к меткам свойств объекта.
+            </summary>
+            <param name="DictElemIDsToMetka">Словарь для перевода относительных идентификаторов элементов в метки</param>
+            <param name="DictKontIDsToMetka">Словарь для перевода относительных идентификаторов свойств объекта в метки</param>
+            <param name="matr_ints">Список элементов типа int из раздела BIMATR</param>
+            <returns>Cловарь со списком соответствий метки элемента к меткам свойств объекта</returns>
+        </member>
+        <member name="M:SData.m_SModMng.convertMatrMarksDictToPropBimatrList(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Int32},System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            Матрица свойств объекта.
+            Конвертирует словарь со списком соответствий метки элемента к меткам свойств объекта в список элементов типа int для раздела BIMATR.
+            </summary>
+            <param name="MatrMarksDict">Словарь со списком соответствий метки элемента к меткам свойств объекта</param>
+            <param name="DictMetkaToElemIDs">Словарь для перевода метки элемента в относительный идентификатор элемента</param>
+            <param name="DictMetkaToKontIDs">Словарь для перевода метки свойства объекта в относительный идентификатор</param>
+            <returns>Список элементов типа int для раздела BIMATR</returns>
+        </member>
+        <member name="M:SData.m_SModMng.convertElemBimatrListToMatrMarksDict(System.Collections.Generic.Dictionary{System.Int32,System.String},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Матрица сетевого графа.
+            Конвертирует список элементов типа int из раздела BIMATR в словарь со списком соответствий метки элемента к меткам элементов объекта.
+            </summary>
+            <param name="DictElemIDsToMetka">Словарь для перевода относительных идентификаторов элементов в метки</param>
+            <param name="matr_ints">Список элементов типа int из раздела BIMATR</param>
+            <returns>Cловарь со списком соответствий метки элемента к меткам элементов объекта</returns>
+        </member>
+        <member name="M:SData.m_SModMng.convertMatrMarksDictToElemBimatrList(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            Матрица сетевого графа.
+            Конвертирует словарь со списком соответствий метки элемента к меткам элементов объекта в список элементов типа int для раздела BIMATR.
+            </summary>
+            <param name="MatrMarksDict">Словарь со списком соответствий метки элемента к меткам элементов объекта</param>
+            <param name="DictMetkaToElemIDs">Словарь для перевода метки элемента в относительный идентификатор элемента</param>
+            <returns>Список элементов типа int для раздела BIMATR</returns>
+        </member>
+        <member name="E:SData.m_SModMng.eNeededElemMetkasDict">
+            <summary>
+            Событие возникающее в момент потребности в словаре соответствия метки элемента и идентификатора
+            </summary>
+        </member>
+        <member name="E:SData.m_SModMng.eNeededPropMetkasDict">
+            <summary>
+            Событие возникающее в момент потребности в словаре соответствия метки контура и идентификатора
+            </summary>
+        </member>
+        <member name="E:SData.m_SModMng.eNeededElemIDsDict">
+            <summary>
+            Событие возникающее в момент потребности в словаре соответствия идентификатора элемента и метки
+            </summary>
+        </member>
+        <member name="E:SData.m_SModMng.eNeededPropIDsDict">
+            <summary>
+            Событие возникающее в момент потребности в словаре соответствия идентификатора контура и метки
+            </summary>
+        </member>
+        <member name="E:SData.m_SModMng.eNeededSetNomStMIDToElem">
+            <summary>
+            Событие возникающее в момент, когда нужно присоеденить новую структурную модель к элементу
+            </summary>
+        </member>
+        <member name="E:SData.m_SModMng.eWantToSay">
+            <summary>
+            Событие возникающее в момент необходимости вывести сообщение
+            </summary>
+        </member>
+        <member name="T:SData.m_SModMng.OPSTRM">
+            <summary>
+            Структура описывающая все параметры записи структурной модели
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.kwkon">
+            <summary>
+            Количество контуров
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.adkon">
+            <summary>
+            Адрес первого контура в разделе KONTUR
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.ngkon">
+            <summary>
+            Количество групп контуров
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.tpsmod">
+            <summary>
+            Тип структурной модели
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.dlsmod">
+            <summary>
+            Количество элементов из раздела BIMATR для определения матрицы свойств
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.adsmod">
+            <summary>
+            Адрес первого элемента в разделе BIMATR для определения матрицы свойств
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.dlpara">
+            <summary>
+            Количество элементов из раздела PARA
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.adpar">
+            <summary>
+            Адрес первого элемента из раздела PARA
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.dltsep">
+            <summary>
+            Количество элементов из раздела TSEP
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.adtsep">
+            <summary>
+            Адрес первого элемента из раздела TSEP
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.dlgras">
+            <summary>
+            Количество элементов из раздела BIMATR для определения сетевого графа
+            </summary>
+        </member>
+        <member name="F:SData.m_SModMng.OPSTRM.adgras">
+            <summary>
+            Адрес первого элемента в разделе BIMATR для определения сетевого графа
+            </summary>
+        </member>
+        <member name="T:SData.m_SModMng.eNeededElemMetkasDictDelegate">
+            <summary>
+            Функция делегат для формирования словаря соответствия метки элемента и идентификатора
+            </summary>
+            <returns>Словарь соответствия метки элемента и идентификатора</returns>
+        </member>
+        <member name="T:SData.m_SModMng.eNeededPropMetkasDictDelegate">
+            <summary>
+            Функция делегат для формирования словаря соответствия метки контура и идентификатора
+            </summary>
+            <returns>Словарь соответствия метки контура и идентификатора</returns>
+        </member>
+        <member name="T:SData.m_SModMng.eNeededElemIDsDictDelegate">
+            <summary>
+            Функция делегат для формирования словаря соответствия идентификатора элемента и метки
+            </summary>
+            <returns>Словарь соответствия идентификатора элемента и метки</returns>
+        </member>
+        <member name="T:SData.m_SModMng.eNeededPropIDsDictDelegate">
+            <summary>
+            Функция делегат для формирования словаря соответствия идентификатора контура и метки
+            </summary>
+            <returns>Словарь соответствия идентификатора контура и метки</returns>
+        </member>
+        <member name="T:SData.m_SModMng.eNeededSetNomStMIDToElemDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент, когда нужно присоеденить новую структурную модель к элементу
+            </summary>
+        </member>
+        <member name="T:SData.m_SModMng.eWantToSayDelegate">
+            <summary>
+            Функция - делегат для события возникающего в момент необходимости вывести сообщение
+            </summary>
+            <param name="message">Сообщение</param>
+        </member>
+        <member name="T:SData.SData">
+            <summary>
+            Структурированные данные
+            </summary>
+        </member>
+        <member name="M:SData.SData.#ctor">
+            <summary>
+            Инициализация объекта SData
+            </summary>
+        </member>
+        <member name="M:SData.SData.#ctor(System.Boolean)">
+            <summary>
+            Инициализация объекта SData
+            <param name="ReadOnly">Установить свойство "Только для чтения"</param>
+            </summary>
+        </member>
+        <member name="M:SData.SData.ServiceMethod_SetReadOnly(System.Boolean)">
+            <summary>
+            Использование, только в исключительных ситуациях, когда мы уверены, что данные кроме нас никто паралельно не использует
+            </summary>
+            <param name="value">Значение поля ReadOnly</param>
+        </member>
+        <member name="M:SData.SData.SetBZFilePath(System.String)">
+            <summary>
+            Метод указывает путь до BZ-файла
+            </summary>
+            <param name="bz_file_path">Путь до BZ-файла</param>
+        </member>
+        <member name="M:SData.SData.InitVals">
+            <summary>
+            Инициализация объекта SData
+            </summary>
+        </member>
+        <member name="M:SData.SData.Reset">
+            <summary>
+            Очистка содержимого и переинициализация объектов
+            </summary>
+        </member>
+        <member name="M:SData.SData.GetFileName">
+            <summary>
+            Возвращает имя файла (только имя) из которого были загружены данные
+            </summary>
+            <returns>Имя файл (но не путь к файлу)</returns>
+        </member>
+        <member name="M:SData.SData.GetFullFileName">
+            <summary>
+            Возвращает полный путь до файла с СПБ
+            </summary>
+            <returns>Полный путь до СПБ</returns>
+        </member>
+        <member name="M:SData.SData.SetFileName(System.String)">
+            <summary>
+            Установить предполагаемое имя файла для сохранения
+            </summary>
+            <param name="filename">Имя файл (но не путь к файлу)</param>
+        </member>
+        <member name="M:SData.SData.LoadFromSPB(System.String)">
+            <summary>
+            Загрузка данных из СПБ файла
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+        </member>
+        <member name="M:SData.SData.LoadFromSPB(System.String,System.Boolean)">
+            <summary>
+            Загрузка данных из СПБ файла
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+            <param name="sendLoaded">Посылать событе о завершении загрузки</param>
+        </member>
+        <member name="M:SData.SData.SaveToSPB(System.String)">
+            <summary>
+            Выгрузка данных в СПБ файл
+            </summary>
+            <param name="filename">Имя файла СПБ</param>
+        </member>
+        <member name="M:SData.SData.statGetElem">
+            <summary>
+            Получить данные статистики по элементам
+            </summary>
+            <returns>Строка со статистикой</returns>
+        </member>
+        <member name="M:SData.SData.statGetPar">
+            <summary>
+            Получить данные статистики по параметрам
+            </summary>
+            <returns>Строка со статистикой</returns>
+        </member>
+        <member name="M:SData.SData.GetGlobalCount">
+            <summary>
+            Метод позволяет узнать "глобальное" количество элементов и экземпляров в SData
+            </summary>
+            <returns>Количество элементов в SData</returns>
+        </member>
+        <member name="M:SData.SData.GetElemCount">
+            <summary>
+            Метод позволяет узнать общее количество элементов и экземпляров в SData
+            </summary>
+            <returns>Количество элементов в SData</returns>
+        </member>
+        <member name="M:SData.SData.GetElemAnalCount">
+            <summary>
+            Метод позволяет узнать общее количество элементов - аналогов в SData
+            </summary>
+            <returns>Количество элементов - аналогов в SData</returns>
+        </member>
+        <member name="M:SData.SData.GetParCount">
+            <summary>
+            Метод позволяет узнать общее количество параметров в SData
+            </summary>
+            <returns>Количество параметров</returns>
+        </member>
+        <member name="M:SData.SData.AddElem(System.String,System.String,System.Int32)">
+            <summary>
+            Добавление элемента в базу
+            </summary>
+            <param name="name">Имя элемента</param>
+            <param name="special_name">Код элемента</param>
+            <param name="parent_id">Идентификатор родителя</param>
+            <returns>Идентификатор вновь добавленного элемента</returns>
+        </member>
+        <member name="M:SData.SData.GetElem(System.Int32,SData.SData.GetElemHint)">
+            <summary>
+            Получить класс для работы с атрибутами элемента
+            </summary>
+            <param name="id">Идентификатор элемента</param>
+            <param name="hint">Режим работы метода получения</param>
+            <returns>Объект типа i_Element</returns>
+        </member>
+        <member name="M:SData.SData.GetElem(System.Int32)">
+            <summary>
+            Получить класс для работы с атрибутами элемента
+            </summary>
+            <param name="id">Идентификатор элемента</param>
+            <returns>Объект типа i_Element</returns>
+        </member>
+        <member name="M:SData.SData.GetElem(System.Int32,System.Int32)">
+            <summary>
+            Получить класс для работы с атрибутами элемента
+            </summary>
+            <param name="parent_id">Идентификатор родительского элемента</param>
+            <param name="local_id">Локальный (в пределах одной ветки, с 1 начиная) идентификатор элемента</param>
+            <returns>Объект типа i_Element</returns>
+        </member>
+        <member name="M:SData.SData.GetElem(System.String)">
+            <summary>
+            Получить класс для работы с атрибутами элемента
+            </summary>
+            <param name="spec">Код элемента</param>
+            <returns>Объект типа i_Element для первого экземпляра</returns>
+        </member>
+        <member name="M:SData.SData.GetDictLocalElemIDtoGlobalID(System.Int32)">
+            <summary>
+            Получить словарь соответствий локального идентификатора элемента - глобальному
+            </summary>
+            <param name="parent_id">Идентификатор родителя, в рамках которого необходимо считать локальных идентификатор</param>
+            <returns>Словарь соответствий локального идентификатора элемента - глобальному</returns>
+        </member>
+        <member name="M:SData.SData.GetDictElemIDtoElemMetka(System.Int32)">
+            <summary>
+            Получить словарь соответствий глобального идентификатора элемента и метки элемента
+            </summary>
+            <param name="parent_id">Идентификатор родителя</param>
+            <returns>Словарь соответствий глобального идентификатора элемента и метки элемента</returns>
+        </member>
+        <member name="M:SData.SData.GetDictLocalElemIDtoElemMetka(System.Int32)">
+            <summary>
+            Получить словарь соответствий локального идентификатора элемента и метки элемента
+            </summary>
+            <param name="parent_id">Идентификатор родителя</param>
+            <returns>Словарь соответствий локального идентификатора элемента и метки элемента</returns>
+        </member>
+        <member name="M:SData.SData.GetDictElemMetkatoLocalElemID(System.Int32)">
+            <summary>
+            Получить словарь соответствий метки элемента и локального идентификатора элемента
+            </summary>
+            <param name="parent_id">Идентификатор родителя</param>
+            <returns>Словарь соответствий метки элемента и локального идентификатора элемента</returns>
+        </member>
+        <member name="M:SData.SData.DelElem(System.Int32)">
+            <summary>
+            Удаление элемента
+            </summary>
+            <param name="id">Идентификатор элемента</param>
+        </member>
+        <member name="M:SData.SData.DelElem(System.Int32,System.Boolean)">
+            <summary>
+            Удаление элемента
+            </summary>
+            <param name="id">Идентификатор элемента</param>
+            <param name="just_mark">Не удалять, а только пометить удаленным</param>
+        </member>
+        <member name="M:SData.SData.DelElem(System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Удаление элемента
+            </summary>
+            <param name="id">Идентификатор элемента</param>
+            <param name="just_mark">Не удалять, а только пометить удаленным</param>
+            <param name="donot_edit_brothers">Не исправлять структуру братьев, для исключения элемента из структуры</param>
+        </member>
+        <member name="M:SData.SData.SetInResh(System.Int32)">
+            <summary>
+            Установить элемент как входящим в решение
+            </summary>
+            <param name="elem_id"></param>
+        </member>
+        <member name="M:SData.SData.SetOutResh(System.Int32)">
+            <summary>
+            Исключить элемент из решения
+            </summary>
+            <param name="elem_id"></param>
+        </member>
+        <member name="M:SData.SData.AddPar(System.Int32,System.String,System.String,System.Int32,System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Добавление нового параметра
+            </summary>
+            <param name="elem_id">Идентификатор экземпляра параметра</param>
+            <param name="p_name">Имя параметра</param>
+            <param name="p_value">Значение параметра</param>
+            <param name="p_type">Тип параметра</param>
+            <param name="p_comment">Комментарий к параметру</param>
+            <param name="p_wwpar">Ссылка на значение у другого параметра (идентификатор параметра, на значение которого ссылаемся)</param>
+            <param name="p_control">Признак контролируемости</param>
+            <param name="sameDefault">Установить значение по умолчанию, такое же как и само значение?</param>
+            <returns>Идентификатор вновь созданного параметра</returns>
+        </member>
+        <member name="M:SData.SData.GetPar(System.Int32)">
+            <summary>
+            Получить класс для работы с атрибутами параметра
+            </summary>
+            <param name="ParId">Глобальный идентификтор параметра</param>
+            <returns>Объект типа i_Parameter</returns>
+        </member>
+        <member name="M:SData.SData.GetPars(System.Int32)">
+            <summary>
+            Получить список классов для работы с атрибутами параметра
+            </summary>
+            <param name="ElemId">Идентификатор экземпляра элемента</param>
+            <returns>Список объектов i_Parameter</returns>
+        </member>
+        <member name="M:SData.SData.DelPar(System.Int32,System.Boolean)">
+            <summary>
+            Удаление параметра
+            </summary>
+            <param name="ParId">Идентефикатор значения параметра</param>
+            <param name="force_if_link_occurs">Удалить, даже если на этот параметр ссылаются другие параметры</param>
+            <returns>Номер параметра, который ссылается на удаляемый параметр, 0 - удаление прошло успешно или [отрицательное число] - другие ошибки</returns>
+        </member>
+        <member name="M:SData.SData.GetSMod(System.Int32)">
+            <summary>
+            Получить экземпляр класса для управления атрибутами структурной модели
+            </summary>
+            <param name="id">Идентификатор структурной модели</param>
+            <returns>Класс для управления атрибутами структурной модели</returns>
+        </member>
+        <member name="M:SData.SData.CreateSMod">
+            <summary>
+            Создать структурную модель у элемента (Тип модели будет установлен как "GRM")
+            </summary>
+            <returns>Идентификатор вновь созданной структурной модели</returns>
+        </member>
+        <member name="M:SData.SData.GetFormuls(System.Int32)">
+            <summary>
+            Получить данные по формулам
+            </summary>
+            <param name="ElemId">Идентификатор экземпляра элемента</param>
+            <returns>Список объектов i_Formula</returns>
+        </member>
+        <member name="M:SData.SData.GetGrKonNames">
+            <summary>
+            Возвращает список имен групп контуров в базе
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SData.SData.GetKonturs(System.Int32)">
+            <summary>
+            Получаем список контуров в обертке i_Kontur у элемента
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <returns>Список классов i_Kontur</returns>
+        </member>
+        <member name="M:SData.SData.AddKontur(System.Int32,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Добавляем контур к элементу
+            </summary>
+            <param name="id">Идентификатор элемента</param>
+            <param name="metka">Метка контура</param>
+            <param name="name">Имя контура</param>
+            <param name="group_name">Имя группы</param>
+            <param name="value_kontur">Значение контура</param>
+            <param name="value_savkon">Значение контура по умолчанию</param>
+            <param name="value_svkntr">Значение контура по умолчанию умолчанию</param>
+        </member>
+        <member name="M:SData.SData.AddKontur(System.Int32,SData.i_Kontur)">
+            <summary>
+            Добавляем контур к элементу
+            </summary>
+            <param name="id">Идентификатор элемента</param>
+            <param name="kontur">Объект типа i_Kontur</param>
+        </member>
+        <member name="M:SData.SData.GetMS(System.Int32)">
+            <summary>
+            Получить список связей у детей
+            </summary>
+            <param name="elem_id">Идентификатор элемента</param>
+            <returns>Список связей у детей</returns>
+        </member>
+        <member name="M:SData.SData.GetPMS(System.Int32)">
+            <summary>
+            Получение списка параметров связи
+            </summary>
+            <param name="ms_id">Идентификатор связи</param>
+            <returns>Список параметров связи</returns>
+        </member>
+        <member name="P:SData.SData.ReadOnly">
+            <summary>
+            Только для чтения
+            </summary>
+        </member>
+        <member name="E:SData.SData.eSaved">
+            <summary>
+            Событие создается в тот момент, когда база сохранена в файл
+            </summary>
+        </member>
+        <member name="E:SData.SData.eLoaded">
+            <summary>
+            Событие создается в тот момент, когда база загружена из файла
+            </summary>
+        </member>
+        <member name="E:SData.SData.eWantToSayMessage">
+            <summary>
+            Событие создается в тот момент, когда методы SData хотят вызвать сообщение
+            </summary>
+        </member>
+        <member name="E:SData.SData.eWantToSetProgress">
+            <summary>
+            Событие создается в тот момент, когда методы SData хотят установить шкалу прогресса (от 1 до 100)
+            </summary>
+        </member>
+        <member name="T:SData.SData.eSavedDelegate">
+            <summary>
+            Функция - делегат для события которое создается в тот момент, когда база сохранена в файл
+            </summary>
+        </member>
+        <member name="T:SData.SData.eLoadedDelegate">
+            <summary>
+            Функция - делегат для события которое создается в тот момент, когда база загружена из файла
+            </summary>
+        </member>
+        <member name="T:SData.SData.eWantToSayMessageDelegate">
+            <summary>
+            Функция - делегат для события которое создается в тот момент, когда методы SData хотят вызвать сообщение 
+            </summary>
+            <param name="message">Текст сообщения</param>
+        </member>
+        <member name="T:SData.SData.eWantToSetProgressDelegate">
+            <summary>
+            Функция - делегат для события которое создается в тот момент, когда методы SData хотят установить шкалу прогресса (от 1 до 100)
+            </summary>
+            <param name="percent">Значение шкалы прогресса (от 1 до 100)</param>
+        </member>
+        <member name="T:SData.SData.GetElemHint">
+            <summary>
+            Режимы работы метода получения класса i_Element
+            </summary>
+        </member>
+        <member name="F:SData.SData.GetElemHint.byExemplarID">
+            <summary>
+            По идентификатору экземпляра
+            </summary>
+        </member>
+        <member name="F:SData.SData.GetElemHint.byAnalogID">
+            <summary>
+            По идентификатору аналога
+            </summary>
+        </member>
+        <member name="F:SData.SData.GetElemHint.byNomStModID">
+            <summary>
+            По идентификатору номера структурной модели
+            </summary>
+        </member>
+        <member name="T:SData.SParDictionary`2">
+            <summary>
+            Реализация ленивого словаря для получения списка параметров у элемента
+            </summary>
+            <typeparam name="TKey">Ключ</typeparam>
+            <typeparam name="TValue">Значение</typeparam>
+        </member>
+        <member name="M:SData.SParDictionary`2.#ctor(System.Collections.Generic.List{SData.c_Parameter_identification},System.Collections.Generic.List{SData.c_Parameter_value},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="spm_parameters_iden">Список параметров</param>
+            <param name="spm_parameters_values">Список значений</param>
+            <param name="par_ids">Список идентификаторов</param>
+        </member>
+        <member name="M:SData.SParDictionary`2.ContainsKey(System.String)">
+            <summary>
+            Проверить на существование элемента в словаре с заданным ключом
+            </summary>
+            <param name="key">Ключ</param>
+            <returns>Существует или нет</returns>
+        </member>
+        <member name="P:SData.SParDictionary`2.Keys">
+            <summary>
+            Список ключей
+            </summary>
+        </member>
+        <member name="P:SData.SParDictionary`2.Values">
+            <summary>
+            Список значений
+            </summary>
+        </member>
+        <member name="P:SData.SParDictionary`2.Item(System.String)">
+            <summary>
+            Элемент словаря
+            </summary>
+            <param name="key">Ключ</param>
+            <returns>Значение</returns>
+        </member>
+        <member name="P:SData.SParDictionary`2.Count">
+            <summary>
+            Количество элементов в словаре
+            </summary>
+        </member>
+        <member name="P:SData.SParDictionary`2.IsReadOnly">
+            <summary>
+            Только для чтения?
+            </summary>
+        </member>
+        <member name="T:SData.s_drag_object">
+            <summary>
+            Класс для учета перетаскиваемого элемента в визуальной компоненте 
+            </summary>
+        </member>
+        <member name="M:SData.s_drag_object.#ctor(SData.i_Element,System.Object)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="draged_elem">Таскаемый элемент</param>
+            <param name="parent_object">Объект родителя</param>
+        </member>
+        <member name="M:SData.s_drag_object.GetDragedElem">
+            <summary>
+            Получить элемент, который перетаскивается
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SData.s_drag_object.GetParnetObject">
+            <summary>
+            Получить объект родителя
+            </summary>
+            <returns>Объект родителя</returns>
+        </member>
+        <member name="M:SData.s_drag_object.FinishDragEvent">
+            <summary>
+            Завершение перетаскивания
+            </summary>
+        </member>
+        <member name="E:SData.s_drag_object.eDragFinished">
+            <summary>
+            Событие возникающеев момент, когда элемент перестали тащить
+            </summary>
+        </member>
+        <member name="T:SData.s_drag_object.eDragFinishedDelegate">
+            <summary>
+            Делегат для события возникающеев момент, когда элемент перестали тащить
+            </summary>
+        </member>
+        <member name="T:SData.s_SPBsavePrepare">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SData.s_SPBsavePrepare.#ctor(SData.SData)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="P:SData.s_SPBsavePrepare.elem_analog_list">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:SData.s_SPBsavePrepare.elem_exemplar_list">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:SData.Utilities.s_specifUtils">
+            <summary>
+            Класс для работы с данными базы спецификации ПМК СПМ
+            </summary>
+        </member>
+        <member name="M:SData.Utilities.s_specifUtils.#ctor(System.String)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="Specif_Path"></param>
+        </member>
+        <member name="M:SData.Utilities.s_specifUtils.GetData(System.String)">
+            <summary>
+            Метод получения данных
+            </summary>
+            <param name="Name">Имя раздела с данными</param>
+            <returns>Данные</returns>
+        </member>
+        <member name="M:SData.Utilities.s_specifUtils.SetData(System.String,System.String)">
+            <summary>
+            Метод записи данных
+            </summary>
+            <param name="Name">Имя раздела с данными</param>
+            <param name="data">Данные</param>
+        </member>
+        <member name="T:SData.Utilities.s_utils">
+            <summary>
+            Вспомогательные методв для работы со структурными данными
+            </summary>
+        </member>
+        <member name="M:SData.Utilities.s_utils.countLettersInListOfString(System.Collections.Generic.List{System.String})">
+            <summary>
+            Процедурка подсчета общего количества символов в списке из элементов типа string
+            </summary>
+            <param name="list">Список элементов типа string</param>
+            <returns>Общее количество символов</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.getBytesFromSPBRazdel(System.String,System.Int32,System.Int32,vsegmCS.TSegmBase)">
+            <summary>
+            Метод получения байтового массива из СПБ.
+            Внимание! Объект СПБ должен быть включен, перед использованием данного метода!
+            </summary>
+            <param name="Razdel_name">Имя раздела СПБ</param>
+            <param name="from">Номер байта, откуда начинать чтение</param>
+            <param name="count">Количество байтов в выборке</param>
+            <param name="spb_base">Объект СПБ</param>
+            <returns></returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.getRazdelItemsCount(System.String,vsegmCS.TSegmBase)">
+            <summary>
+            Метод получения количества записей в разделе.
+            Внимание! Объект СПБ должен быть включен, перед использованием данного метода!
+            </summary>
+            <param name="Razdel_name">Имя раздела СПБ</param>
+            <param name="spb_base">Объект СПБ</param>
+            <returns></returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.getIntFromBinary(System.Byte[])">
+            <summary>
+            Метод формирования списка из элементов типа int размером 4 байта.
+            </summary>
+            <param name="binary">Байтовый массив</param>
+            <returns>Список целых значений</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.getFloatFromBinary(System.Byte[])">
+            <summary>
+            Метод формирования списка из элементов типа float размером 4 байта.
+            </summary>
+            <param name="binary">Байтовый массив</param>
+            <returns>Список значений с плавающей точкой</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.getCharFromBinary(System.Byte[])">
+            <summary>
+            Метод формирования списка из элементов типа char размером 1 байт.
+            </summary>
+            <param name="binary">Байтовый массив</param>
+            <returns>Список символов</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.getStringFromBinaryBySize(System.Byte[],System.Int32)">
+            <summary>
+            Метод формирования списка элементов типа string размером size.
+            Запись в выходном списке обрезается, при нахождении "нуль-терминатора". 
+            </summary>
+            <param name="binary">Байтовый массив</param>
+            <param name="size">Размер одной записи</param>
+            <returns>Список текстовых значений</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.getStringFormBinaryByST(System.Byte[],System.Collections.Generic.List{SData.Utilities.s_utils.ST})">
+            <summary>
+            Метод формирования списка элементов типа string по списку диапазонов ST-структуры.
+            </summary>
+            <param name="binary">Байтовый массив</param>
+            <param name="st_array">Список с ST-структурами</param>
+            <returns>Список текстовых значений</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.getSTFromBinary(System.Byte[])">
+            <summary>
+            Метод формирования списка с ST-структурами
+            </summary>
+            <param name="binary">Байтовый массив</param>
+            <returns>Список с ST-структурами</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.getMSFromBinary(System.Byte[])">
+            <summary>
+            Метод формирования списка с MS-структурой
+            </summary>
+            <param name="binary">Байтовый массив</param>
+            <returns>Список с MS-структурами</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.intTObool(System.Int32)">
+            <summary>
+            Преобразование int значения ("0" или "1") в булевое
+            </summary>
+            <param name="value">int значения ("0" или "все остальное")</param>
+            <returns>Истина или ложь</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.copyByteArrayToByteArray(System.Byte[],System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Копирование данных в конец байтового массива по счетчику
+            </summary>
+            <param name="from">Массив - источник</param>
+            <param name="to">Массив - результат</param>
+            <param name="size">Размер массива источника</param>
+            <param name="counter">Счетчик</param>
+            <returns>Новое значение счетчика</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.fillStringWithSpaces(System.String,System.Int32)">
+            <summary>
+            Заполнение строки пробелами до необходимого размера
+            </summary>
+            <param name="str">Начальная строка</param>
+            <param name="str_size">Размер стркоки</param>
+            <returns>Результирующая строка</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.EndWithNull(System.String)">
+            <summary>
+            Замена первого пробела в строке символом нуль-терминатора
+            </summary>
+            <param name="input">Строка на вход</param>
+            <returns>Строка на выход</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.convertBitArrayToOneByte(System.Collections.BitArray)">
+            <summary>
+            Метод преобразующий битовый массив размером 8 бит в один байт
+            </summary>
+            <param name="bits">Битовый массив</param>
+            <returns>Один байт</returns>
+        </member>
+        <member name="M:SData.Utilities.s_utils.makeFileSystemName(System.String,System.Int32)">
+            <summary>
+            Метод для формирования имени файла в соответствии с требованиями файловой системы ОС Windows
+            </summary>
+            <param name="input_string">Строка для преобразования</param>
+            <param name="lenght">Количество символов для обрезки</param>
+            <returns>Результат</returns>
+        </member>
+        <member name="T:SData.Utilities.s_utils.MS">
+            <summary>
+            Структура для работы с MS-разделом в СПБ
+            </summary>
+        </member>
+        <member name="F:SData.Utilities.s_utils.MS.to">
+            <summary>
+            Указывает к которому элементу привязывается (индекс 0)
+            </summary>
+        </member>
+        <member name="F:SData.Utilities.s_utils.MS.from">
+            <summary>
+            Указывает который элемент привязывается (индекс 1)
+            </summary>
+        </member>
+        <member name="T:SData.Utilities.s_utils.ST">
+            <summary>
+            Структура для работы с ST-разделами в СПБ
+            </summary>
+        </member>
+        <member name="F:SData.Utilities.s_utils.ST.adr">
+            <summary>
+            Адрес
+            </summary>
+        </member>
+        <member name="F:SData.Utilities.s_utils.ST.lenght">
+            <summary>
+            Длина
+            </summary>
+        </member>
+        <member name="T:SData.c_PMS">
+            <summary>
+            Класс для работы с данными по связям 3-го порядка между элементами
+            </summary>
+        </member>
+        <member name="M:SData.c_PMS.#ctor(System.Int32,System.Int32,System.Single)">
+            <summary>
+            Конструктор для класса работы с данными по связям 3-го порядка между элементами
+            </summary>
+            <param name="type"></param>
+            <param name="wwpms"></param>
+            <param name="value"></param>
+        </member>
+        <member name="P:SData.c_PMS.type">
+            <summary>
+            Тип
+            </summary>
+        </member>
+        <member name="P:SData.c_PMS.wwpms">
+            <summary>
+            Связь
+            </summary>
+        </member>
+        <member name="P:SData.c_PMS.value">
+            <summary>
+            Значение
+            </summary>
+        </member>
+    </members>
+</doc>

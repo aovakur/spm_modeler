@@ -1,0 +1,833 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>vsegmCS</name>
+    </assembly>
+    <members>
+        <member name="T:vsegmCS.TConv">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TConv.GetStringFromByteArray(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TConv.GetByteArrayFromString(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TConv.GetByteArrayFromIntArray(System.Int32[])">
+            <summary>
+            
+            </summary>
+            <param name="ints"></param>
+            <returns></returns>
+        </member>
+        <member name="T:vsegmCS.TSegmentHeader">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmentHeader.iType">
+            <summary>
+            0 - свободный сегмент, 1 - рабочий
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmentHeader.iPrior">
+            <summary>
+            указатель на предыдущий элемент цепочки, для 1-го сегмента содержит указатель на первый свободный блок
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmentHeader.iNext">
+            <summary>
+            указатель на следующий сегмент в цепочки 
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmentHeader.GetSize">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:vsegmCS.ESegmStream">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.ESegmStream.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="T:vsegmCS.TSegmStream">
+            <summary>
+            Класс для поддержки добавления и удаления блоков
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmStream.iFirstFree">
+            <summary>
+            Указатель на первый свободный блок
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.SyncPosition">
+            <summary>
+            Синхронизаци позиции в соответствии с номером  FPosition
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.WriteSegmentHeader(vsegmCS.TSegmentHeader,System.Int32)">
+            <summary>
+            Запись заголовка сегмента по указанному адресу
+            </summary>
+            <param name="header"></param>
+            <param name="iPosition"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.ReadSegmentHeader(vsegmCS.TSegmentHeader,System.Int32)">
+            <summary>
+            Читает заголовок активного сегмента
+            </summary>
+            <param name="header"></param>
+            <param name="iPosition"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.#ctor(System.IO.Stream,System.Int32)">
+            <summary>
+            коструктор. tmstream *astream - указатель на экземпляр объекта 
+            для прямого доступа к файлу. для vc - это наследник cstdiofile, 
+            для borland builder - наследник tfilestream.
+            int asegmentsize - размер сегмента
+            
+            </summary>
+            <param name="AStream"></param>
+            <param name="ASegmentSize"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.SegmentSize">
+            <summary>
+            Возвращает размер сегмента
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.DataSize">
+            <summary>
+            Возвращает размер области данных в сегменте
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.Position">
+            <summary>
+            Номер активного сегмента 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.SetPosition(System.Int32)">
+            <summary>
+            Устанавливает активный сегмент
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.Stream">
+            <summary>
+             Возвращает указатель на поток с данными
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.ReadSegment(System.Byte[])">
+            <summary>
+             Чтение заголовка сегмента и данных в один буфер
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.WriteSegment(System.Byte[])">
+            <summary>
+            Запись заголовка сегмента и данных в один буфер
+            </summary>
+            <param name="buffer"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.AddSegment">
+            <summary>
+            Добавление в файл нового сегмента
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.DeleteSegment">
+            <summary>
+            Удаление сегмента
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.SegmentCount">
+            <summary>
+            Возвращает количество сегментов
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.Clear">
+            <summary>
+            Очистка файла - устанавливает размер файла равным нулю и делает активным  нулевой сегмент
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.Pack">
+            <summary>
+            Сокращение размера файла на свободные сегменты в конце
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.IsWorkSegment">
+            <summary>
+            Возвращает истину, если активный сегмент не является удаленным
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmStream.ShowIndexStat">
+            <summary>
+            Выводит статистику по сегментам
+            </summary>
+        </member>
+        <member name="T:vsegmCS.ESegmListStream">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.ESegmListStream.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="T:vsegmCS.TSegmListStream">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmListStream.WriteTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmListStream.ReadTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.#ctor(System.IO.Stream,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="AStream"></param>
+            <param name="SegmentSize"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.Next">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.Prior">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.IsLast">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.IsFirst">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.Last">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.First">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.AddNewList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.AddToEndOfList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.Delete">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.DeleteList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.ReadData(System.Int32,System.Int32,System.Int32,System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="iSegment"></param>
+            <param name="iOffset"></param>
+            <param name="Count"></param>
+            <param name="buf"></param>
+            <param name="SegmentBuffer"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.ReadData(System.Int32,System.Int32,System.Int32,System.Byte[],System.Byte[],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="iSegment"></param>
+            <param name="iOffset"></param>
+            <param name="Count"></param>
+            <param name="buf"></param>
+            <param name="SegmentBuffer"></param>
+            <param name="bReadFirstSegment"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmListStream.WriteData(System.Int32,System.Int32,System.Int32,System.Byte[],System.Byte[],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="iSegment"></param>
+            <param name="iOffset"></param>
+            <param name="Count"></param>
+            <param name="buf"></param>
+            <param name="SegmentBuffer"></param>
+            <param name="bPossibleSegmentsAdded"></param>
+        </member>
+        <member name="T:vsegmCS.TRazdelTitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdelTitle.sName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdelTitle.Tip">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdelTitle.ElementSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdelTitle.Count">
+            <summary>
+            Количество байт в разделе
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdelTitle.iFirstIndexSegment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdelTitle.iWritePos">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TRazdelTitle.GetSize">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:vsegmCS.TSegmBaseTitle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmBaseTitle.sName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmBaseTitle._trash1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmBaseTitle.Version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmBaseTitle.ModifyDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmBaseTitle._trash2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmBaseTitle.RazdelCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBaseTitle.GetSize">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:vsegmCS.TRazdel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.FSegments">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.sName">
+            <summary>
+            Имя раздела
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.Tip">
+            <summary>
+            Тип раздела
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.ElementSize">
+            <summary>
+            Размер элемента
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.Count">
+            <summary>
+            Количество байт в разделе
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.iPos">
+            <summary>
+            Позиция чтения и записи
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.iWritePos">
+            <summary>
+            Последняя позиция записи
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.iFirstIndexSegment">
+            <summary>
+            Номер первого индексного сегмента
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.iLastSegment">
+            <summary>
+            Номер последнего прочитанного сегмента
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.LastSegment">
+            <summary>
+            Последий считанный сегмент
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TRazdel.bModifySegments">
+            <summary>
+            Указывает, что сегменты модифицировались
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TRazdel.#ctor(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="SegmentSize"></param>
+        </member>
+        <member name="M:vsegmCS.TRazdel.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TRazdel.FillTitle(vsegmCS.TRazdelTitle)">
+            <summary>
+            Заполняет заголовок раздела
+            </summary>
+            <param name="title"></param>
+        </member>
+        <member name="M:vsegmCS.TRazdel.ReadTitle(vsegmCS.TRazdelTitle)">
+            <summary>
+            Считывает данные из заголовка раздела
+            </summary>
+            <param name="title"></param>
+        </member>
+        <member name="M:vsegmCS.TRazdel.SetPosition(System.Int32)">
+            <summary>
+            Устанавливает позицию чтения и записи
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:vsegmCS.TRazdel.Position">
+            <summary>
+            Возвращает позицию чтения и записи
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TRazdel.GetAbsoluteSegment(System.Int32)">
+            <summary>
+            Возвращает абсолютный адрес сегмента по порядковому
+            </summary>
+            <param name="iSegment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TRazdel.AddSegment(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="iAbsoluteSegment"></param>
+        </member>
+        <member name="M:vsegmCS.TRazdel.Segments">
+            <summary>
+            Индексные сегменты 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TRazdel.ElementCount">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:vsegmCS.ESegmBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.ESegmBase.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="T:vsegmCS.TSegmBase">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.ReadHeader">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.WriteHeader">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.FindSegment(vsegmCS.TRazdel,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="razdel"></param>
+            <param name="iSegment"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.UpdateSegmentList(vsegmCS.TRazdel,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="razdel"></param>
+            <param name="iSegment"></param>
+            <param name="iAbsSegmentFrom"></param>
+        </member>
+        <member name="F:vsegmCS.TSegmBase.sBaseName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.TSegmBase.ModifyDate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.#ctor(System.IO.Stream)">
+            <summary>
+            
+            </summary>
+            <param name="AStream"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.Razdels(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.Razdels(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.SetActiveRazdel(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.SetActiveRazdel(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sName"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.RazdelIndex(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.Write(System.Byte[],System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="buffer"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.Read(System.Byte[],System.Int32)">
+            <summary>
+             Читает данные из раздела
+            </summary>
+            <param name="buffer"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.SetSize(System.Int32)">
+            <summary>
+            Устанавливает размер раздела
+            </summary>
+            <param name="Value"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.ClearRazdel">
+            <summary>
+            Очищает раздел
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.Clear">
+            <summary>
+            Очищает все разделы базы
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.AddRazdel(System.String,System.Char,System.Int32)">
+            <summary>
+            Добавить раздел
+            </summary>
+            <param name="sName"></param>
+            <param name="Tip"></param>
+            <param name="ElemSize"></param>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.DeleteRazdel">
+            <summary>
+            Удалить раздел
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.SeekEnd">
+            <summary>
+            Переместиться в конец раздела
+            </summary>
+        </member>
+        <member name="M:vsegmCS.TSegmBase.VerifyLinks">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:vsegmCS.TSegmBase.ActiveRazdel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:vsegmCS.TSegmBase.ActiveRazdelIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:vsegmCS.TSegmBase.RazdelCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:vsegmCS.DefineConstants">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:vsegmCS.DefineConstants.RAZDEL_NAME_SIZE">
+            <summary>
+            Размер имени раздела
+            </summary>
+        </member>
+        <member name="F:vsegmCS.DefineConstants.SEGM_BASE_NAME_SIZE">
+            <summary>
+            Размер имени базы в заголовке
+            </summary>
+        </member>
+        <member name="F:vsegmCS.DefineConstants.DATE_TEXT_SIZE">
+            <summary>
+            Размер строки с датой
+            </summary>
+        </member>
+        <member name="F:vsegmCS.DefineConstants.SEGM_BASE_FILE_VERSION">
+            <summary>
+            Номер версии файла базы
+            </summary>
+        </member>
+        <member name="T:vsegmCS.VBaz">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:vsegmCS.VBaz.baz_atrrzd(vsegmCS.TSegmBase,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Определение значений параметров раздела базы
+            </summary>
+            <param name="tbbz">заголовок базы</param>
+            <param name="nammas">имя раздела</param>
+            <param name="nomrzd">номер искомого раздела в базе данных</param>
+            <param name="tip">тип раздела</param>
+            <param name="rel">размер элемента</param>
+            <param name="nel">номер элемента, к которому было последнее обращение</param>
+            <param name="maxel">количество элементов в разделе</param>
+            <param name="npz">номер первой записи для искомого раздела</param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.baz_forbz(vsegmCS.TSegmBase@,System.String,System.String)">
+            <summary>
+            Формирование заголовка базы
+            </summary>
+            <param name="tbbz">Сегментированная база</param>
+            <param name="spmBzPath">Путь до файла с описанием структуры базы. BZ файл, по которому формируем разделы новой базы</param>
+            <param name="spbPath">Путь до файла базы. SPB файл, который нужно сформировать</param>
+            <returns>Результат (0 - все хорошо, 1 - были ошибки)</returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.baz_inirzd(vsegmCS.TSegmBase,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="tbbz"></param>
+            <param name="namrzd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.baz_parrzd(vsegmCS.TSegmBase,System.String,System.Int32@,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            
+            </summary>
+            <param name="tbbz">объект базы</param>
+            <param name="nammas">имя раздела</param>
+            <param name="red"></param>
+            <param name="rel">размер элемента</param>
+            <param name="nel">номер элемента, к которому было последнее обращение</param>
+            <param name="maxel">количество элементов в разделе</param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.baz_wklbz(vsegmCS.TSegmBase@,System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="tbbz"></param>
+            <param name="mtbbz"></param>
+            <param name="filbaz"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.baz_wybbzb(vsegmCS.TSegmBase,System.String,System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="tbbz"></param>
+            <param name="nammas"></param>
+            <param name="ot"></param>
+            <param name="skolko"></param>
+            <param name="kuda"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.baz_wykbz(vsegmCS.TSegmBase)">
+            <summary>
+            Закрытие БД
+            </summary>
+            <param name="tbbz"></param>
+        </member>
+        <member name="M:vsegmCS.VBaz.baz_zapbzb(vsegmCS.TSegmBase,System.String,System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            Заполнение базы информацией
+            </summary>
+            <param name="tbbz">объект базы</param>
+            <param name="nammas">имя раздела</param>
+            <param name="ot">адрес элемента для записи</param>
+            <param name="skolko">количество элементов для записи</param>
+            <param name="chto">массив для записи</param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.bbb_zapbzb(vsegmCS.TSegmBase,System.String,System.Int32,System.Int32,System.Byte[])">
+            <summary>
+            Заполнение базы информацией (альтернатива baz_zapbzb)
+            </summary>
+            <param name="tbbz">объект базы</param>
+            <param name="nammas">имя раздела</param>
+            <param name="ot">адрес элемента для записи</param>
+            <param name="skolko">количество байт для записи</param>
+            <param name="chto">массив для записи</param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.baz_movrzd(vsegmCS.TSegmBase,System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            Копирование информации из раздела в раздел одной базы. 
+            
+            ot less 0  - Выбор с первого элемента
+            tbbz[ 0 ] - File handle
+            tbbz[ 1 ] - Длина записи
+            
+            </summary>
+            <param name="tbbz">База</param>
+            <param name="nam1">Имя раздела-источника</param>
+            <param name="start">Индекс элемента раздела с которого начинать</param>
+            <param name="count">Количество элементов раздела</param>
+            <param name="nam2">Имя раздела-назначения</param>
+            <returns>Код ошибки: 0-все хорошо; 1-раздел не существует; 2-выход за границы; 3-ошибка чтения/записи.</returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.ConvertFromFortranString(System.String,System.Int32)">
+            <summary>
+            Копирует не более count символов из строки и отбрасывает пробелы
+            </summary>
+            <param name="s"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:vsegmCS.VBaz.ConvertFromFortranString(System.String,System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="sFrom"></param>
+            <param name="sTo"></param>
+            <param name="count"></param>
+        </member>
+        <member name="T:vsegmCS.VBaz.SpmBzLine">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
